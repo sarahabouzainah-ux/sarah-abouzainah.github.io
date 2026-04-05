@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sarah Abouzainah — Product Design Leader</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%237C3AED'/><text x='16' y='22' text-anchor='middle' font-size='14' font-weight='900' fill='white' font-family='Arial,sans-serif'>SA</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ─── TOKENS ─── */
@@ -138,7 +139,8 @@ h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.75rem,3vw,2.5r
 .bc-w4{grid-column:span 4}.bc-w2{grid-column:span 2}.bc-w3{grid-column:span 3}
 .bcard{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform 0.25s ease,box-shadow 0.25s ease,border-color 0.2s;cursor:pointer;}
 .bcard:hover{transform:translateY(-5px);box-shadow:0 24px 56px rgba(0,0,0,0.09);border-color:var(--violet-mid)}
-.bthumb{width:100%;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-size:2.25rem;font-weight:800;letter-spacing:-0.04em;aspect-ratio:16/9;}
+.bthumb{width:100%;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-size:2.25rem;font-weight:800;letter-spacing:-0.04em;aspect-ratio:16/9;position:relative;overflow:hidden;}
+.bthumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
 .bc-w4 .bthumb{aspect-ratio:21/9}.bc-w2 .bthumb{aspect-ratio:1/1;flex:1;font-size:1.75rem}
 .th-v{background:linear-gradient(135deg,#F5F3FF,#DDD6FE);color:var(--violet)}
 .th-g{background:linear-gradient(135deg,#ECFDF5,#A7F3D0);color:var(--green)}
@@ -442,8 +444,11 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
     </div>
     <div class="bento">
 
+      <!-- 2021 — Bus Tracker -->
       <a href="https://www.behance.net/gallery/112026169/UX-Case-Study-Bus-Tracker-Mobile-App" target="_blank" class="bcard bc-w4">
-        <div class="bthumb th-b">BUS TRACKER</div>
+        <div class="bthumb th-b">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/112026169.jpg" alt="" onerror="this.remove()">
+        </div>
         <div class="bc-body">
           <div class="bc-tags"><span class="bc-tag t-b">UX Research</span><span class="bc-tag t-v">Mobile</span></div>
           <div class="bc-title">UX Case Study — Bus Tracker Mobile App</div>
@@ -452,19 +457,11 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
         </div>
       </a>
 
-      <a href="https://www.behance.net/gallery/97389353/User-Research-Design-Study-for-10000-Floor-Elevator" target="_blank" class="bcard bc-w2" style="flex-direction:column">
-        <div class="bthumb th-v" style="flex:1;aspect-ratio:unset;min-height:160px">10K</div>
-        <div class="bc-body">
-          <div class="bc-tags"><span class="bc-tag t-v">Research</span></div>
-          <div class="bc-title">10,000-Floor Elevator Research</div>
-          <div class="bc-desc">Speculative UX research — alternative control interfaces for extreme scale.</div>
-          <div class="bc-ft"><span class="bc-year">2020</span><span class="bc-arrow">View ↗</span></div>
+      <!-- 2021 — Valeo Appraisal -->
+      <div role="button" tabindex="0" onclick="showCaseStudy('appraisal')" onkeydown="if(event.key==='Enter')showCaseStudy('appraisal')" class="bcard bc-w2">
+        <div class="bthumb th-g">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/7286ee114938089.6045110c1d991.png" alt="" onerror="this.remove()">
         </div>
-      </a>
-
-      <!-- Valeo Appraisal → opens case study -->
-      <div role="button" tabindex="0" onclick="showCaseStudy('appraisal')" onkeydown="if(event.key==='Enter')showCaseStudy('appraisal')" class="bcard bc-w3">
-        <div class="bthumb th-g">VALEO</div>
         <div class="bc-body">
           <div class="bc-tags"><span class="bc-tag t-g">Enterprise</span><span class="bc-tag t-v">B2B</span></div>
           <div class="bc-title">UX/UI — Valeo Appraisal Process</div>
@@ -473,8 +470,11 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
         </div>
       </div>
 
+      <!-- 2020 — Monitoring Tool -->
       <a href="https://www.behance.net/gallery/96320335/UX-Design-for-Monitoring-Tool-App" target="_blank" class="bcard bc-w3">
-        <div class="bthumb th-a">MON</div>
+        <div class="bthumb th-a">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/96320335.jpg" alt="" onerror="this.remove()">
+        </div>
         <div class="bc-body">
           <div class="bc-tags"><span class="bc-tag t-a">Enterprise</span><span class="bc-tag t-g">Technical UX</span></div>
           <div class="bc-title">UX Design — Monitoring Tool App</div>
@@ -483,8 +483,24 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
         </div>
       </a>
 
+      <!-- 2020 — 10K Elevator -->
+      <a href="https://www.behance.net/gallery/97389353/User-Research-Design-Study-for-10000-Floor-Elevator" target="_blank" class="bcard bc-w3">
+        <div class="bthumb th-v">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/97389353.jpg" alt="" onerror="this.remove()">
+        </div>
+        <div class="bc-body">
+          <div class="bc-tags"><span class="bc-tag t-v">Research</span></div>
+          <div class="bc-title">10,000-Floor Elevator Research</div>
+          <div class="bc-desc">Speculative UX research — alternative control interfaces for extreme scale.</div>
+          <div class="bc-ft"><span class="bc-year">2020</span><span class="bc-arrow">View ↗</span></div>
+        </div>
+      </a>
+
+      <!-- 2020 — Admission Exam -->
       <a href="https://www.behance.net/gallery/93395403/UX-Case-Study-for-Admission-Exam-App" target="_blank" class="bcard bc-w2">
-        <div class="bthumb th-b" style="aspect-ratio:4/3">EDU</div>
+        <div class="bthumb th-b" style="aspect-ratio:4/3">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/93395403.jpg" alt="" onerror="this.remove()">
+        </div>
         <div class="bc-body">
           <div class="bc-tags"><span class="bc-tag t-b">EdTech</span></div>
           <div class="bc-title">Admission Exam App</div>
@@ -493,8 +509,11 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
         </div>
       </a>
 
+      <!-- 2020 — Expense Tracker -->
       <a href="https://www.behance.net/gallery/93151109/UX-Case-Study-for-Expense-Tracker" target="_blank" class="bcard bc-w2">
-        <div class="bthumb th-s" style="aspect-ratio:4/3">EXP</div>
+        <div class="bthumb th-s" style="aspect-ratio:4/3">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/93151109.jpg" alt="" onerror="this.remove()">
+        </div>
         <div class="bc-body">
           <div class="bc-tags"><span class="bc-tag t-g">FinTech</span></div>
           <div class="bc-title">Expense Tracker</div>
@@ -503,8 +522,11 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
         </div>
       </a>
 
+      <!-- 2016 — Zewail City -->
       <a href="https://www.behance.net/gallery/53697885/Interface-Design-for-Zewail-City-Website" target="_blank" class="bcard bc-w2">
-        <div class="bthumb th-r" style="aspect-ratio:4/3">ZEW</div>
+        <div class="bthumb th-r" style="aspect-ratio:4/3">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/53697885.jpg" alt="" onerror="this.remove()">
+        </div>
         <div class="bc-body">
           <div class="bc-tags"><span class="bc-tag t-b">Web</span></div>
           <div class="bc-title">Zewail City Website</div>
@@ -513,8 +535,11 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
         </div>
       </a>
 
+      <!-- 2016 — Murals -->
       <a href="https://www.behance.net/gallery/57606125/Classrooms-Wall-Murals" target="_blank" class="bcard bc-w2">
-        <div class="bthumb th-a" style="aspect-ratio:4/3;font-size:1.4rem;text-align:center;padding:1rem">Mural<br>Art</div>
+        <div class="bthumb th-a" style="aspect-ratio:4/3">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/57606125.jpg" alt="" onerror="this.remove()">
+        </div>
         <div class="bc-body">
           <div class="bc-tags"><span class="bc-tag t-a">Environmental</span></div>
           <div class="bc-title">Classrooms Wall Murals</div>
@@ -522,24 +547,6 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
           <div class="bc-ft"><span class="bc-year">2016</span><span class="bc-arrow">View ↗</span></div>
         </div>
       </a>
-
-      <!-- Workforce Manager → opens case study -->
-      <div role="button" tabindex="0" onclick="showCaseStudy('workforce')" onkeydown="if(event.key==='Enter')showCaseStudy('workforce')" class="bcard bc-w4" style="background:#0D1117;border-color:#1E3A4A;">
-        <div class="bthumb" style="background:linear-gradient(135deg,#0D1117 0%,#172535 100%);color:#4E6B7C;aspect-ratio:21/9;font-size:2rem;letter-spacing:-0.03em;">◈ WORKFORCE MGR</div>
-        <div class="bc-body" style="background:#0D1117">
-          <div class="bc-tags">
-            <span class="bc-tag" style="background:rgba(78,107,124,0.2);color:#93C5D4;border:1px solid rgba(78,107,124,0.35)">NDA</span>
-            <span class="bc-tag t-b">Capacity Planning</span>
-            <span class="bc-tag t-g">Engineering Ops</span>
-          </div>
-          <div class="bc-title" style="color:#E5E7EB">Workforce Capacity Manager — Valeo</div>
-          <div class="bc-desc" style="color:rgba(255,255,255,0.4)">Real-time capacity tool for engineering managers — team visibility, project allocation, request feasibility, and proactive hiring decisions. Full UX research case study.</div>
-          <div class="bc-ft" style="border-top-color:rgba(255,255,255,0.08)">
-            <span class="bc-year" style="color:rgba(255,255,255,0.3)">2025 · Enterprise · Internal Case Study</span>
-            <span class="bc-arrow">View ↗</span>
-          </div>
-        </div>
-      </div>
 
     </div>
   </div>
@@ -555,6 +562,8 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
       <div class="nda-card"><div class="nda-n">01</div><div class="nda-badge">🔒 NDA · Design System</div><div class="nda-title">GISACC Design System</div><div class="nda-desc">Built and scaled Valeo's enterprise design system end-to-end — component architecture, design tokens, semantic theming, and accessibility standards. Reduced design and development effort by 50% across all product lines.</div><div class="nda-foot">Valeo · 2021–Present</div></div>
       <div class="nda-card"><div class="nda-n">02</div><div class="nda-badge">🔒 NDA · Risk Management SaaS</div><div class="nda-title">Issues &amp; Risks Monitoring Platform</div><div class="nda-desc">Transformed Valeo's spreadsheet-based risk tracking into a structured B2B SaaS product. Outcome: 15% uplift in user retention and significantly reduced reporting overhead.</div><div class="nda-foot">Valeo · 2022</div></div>
       <div class="nda-card"><div class="nda-n">03</div><div class="nda-badge">🔒 NDA · Project Management SaaS</div><div class="nda-title">STR Project Management App</div><div class="nda-desc">Full product strategy, design model, and UI for a cross-functional PM platform supporting 6 distinct user personas with role-adaptive navigation and granular access control.</div><div class="nda-foot">Valeo · 2023</div></div>
+      <div class="nda-card"><div class="nda-n">04</div><div class="nda-badge">🔒 NDA · Process Management</div><div class="nda-title">SIPH — Process &amp; Templates Platform</div><div class="nda-desc">Designed the end-to-end UX for SIPH, Valeo's internal process management hub. Engineers use SIPH to access standardised templates and manage the inputs and outputs that flow between each phase of the product development lifecycle — reducing ambiguity and enforcing consistency across global R&amp;D teams.</div><div class="nda-foot">Valeo · 2024</div></div>
+      <div class="nda-card"><div class="nda-n">05</div><div class="nda-badge">🔒 NDA · Workforce Management SaaS</div><div class="nda-title">Workforce Capacity Manager</div><div class="nda-desc">A real-time capacity management tool for engineering managers — delivering team visibility, smarter project allocation, faster request assessment, and proactive hiring decisions. Outcome: 4× faster request assessment, 100% task completion in usability testing, and forecast visibility 2 quarters ahead.</div><div class="nda-foot">Valeo · 2026</div></div>
     </div>
   </div>
 </div>

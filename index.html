@@ -1,285 +1,532 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sarah Abouzainah — Product Design Leader</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%237C3AED'/><text x='16' y='22' text-anchor='middle' font-size='14' font-weight='900' fill='white' font-family='Arial,sans-serif'>SA</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#fff;--bg-soft:#F7F7F5;--bg-dark:#0A0A0A;
-  --ink:#111;--ink-2:#555;--ink-3:#999;
-  --violet:#7C3AED;--violet-light:#EDE9FE;--violet-mid:#C4B5FD;
-  --green:#059669;--green-light:#ECFDF5;
-  --amber:#D97706;--amber-light:#FFFBEB;
-  --blue:#2563EB;--blue-light:#EFF6FF;
-  --border:#E8E8E6;--radius:12px;
-  --vg:#82E600;--vg-dark:#5CA300;--vg-light:#F0FFCC;
-  --vt:#4E6B7C;--vt-light:#E8EFF3;
+/* ══════════════════════════════════════
+   DESIGN TOKENS — DARK (DEFAULT)
+══════════════════════════════════════ */
+:root {
+  --bg:#080808; --bg-2:#111; --bg-3:#1A1A1A;
+  --fg:#F0EEE8; --fg-dim:rgba(240,238,232,0.55);
+  --fg-muted:rgba(240,238,232,0.32); --fg-faint:rgba(240,238,232,0.08);
+  --hairline:rgba(240,238,232,0.1);
+  --accent:#7C3AED; --accent-bright:#9F6EFF; --accent-glow:rgba(124,58,237,0.35);
+  --noise-opacity:0.032; --nav-bg:rgba(8,8,8,0.88);
+  --radius:3px;
+  /* CS specific */
+  --vg:#82E600;--vg-dark:#5CA300;--vg-light:rgba(130,230,0,0.08);
+  --vt:#4E6B7C;--vt-light:rgba(78,107,124,0.1);
   --dark:#0D1117;--dark2:#1A2332;
-  --muted:#6B7280;--csborder:#E5E7EB;--surface:#F9FAFB;
+  --csborder:rgba(240,238,232,0.12);--surface:#0D0D0D;
 }
+
+/* ── LIGHT THEME ── */
+[data-theme="light"] {
+  --bg:#F5F4F0; --bg-2:#FFFFFF; --bg-3:#EEECEA;
+  --fg:#111111; --fg-dim:rgba(17,17,17,0.65);
+  --fg-muted:rgba(17,17,17,0.42); --fg-faint:rgba(17,17,17,0.06);
+  --hairline:rgba(17,17,17,0.12);
+  --noise-opacity:0.012; --nav-bg:rgba(245,244,240,0.92);
+  --dark:#F0EEE8; --dark2:#E8E6E0;
+  --csborder:rgba(17,17,17,0.12); --surface:#FAFAF8;
+}
+[data-theme="light"] .marquee-item img{filter:none;opacity:0.6}
+[data-theme="light"] .nda-card{background:var(--bg-2)}
+[data-theme="light"] .skill-pill-ai{background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.3);color:var(--accent)}
+[data-theme="light"] .cs-hero{filter:none}
+[data-theme="light"] #page-appraisal .cs-hero,
+[data-theme="light"] #page-elevator .cs-hero,
+[data-theme="light"] #page-workforce .cs-hero{filter:none}
+[data-theme="light"] .hero-appraisal,[data-theme="light"] .hero-elevator,[data-theme="light"] .hero-workforce{
+  background:linear-gradient(135deg,#1a1a1a,#111)!important;
+}
+[data-theme="light"] .illus-screen rect:first-child{fill:rgba(124,58,237,0.05);stroke:rgba(124,58,237,0.25)}
+[data-theme="light"] .portrait-ring{border-color:rgba(124,58,237,0.3)}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;line-height:1.6}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden;line-height:1.6;cursor:none}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:var(--noise-opacity);
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;
+}
 
-/* ── MAIN NAV ── */
-#main-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-0.02em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:7px;cursor:pointer;}
-.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--violet)}
-.nav-links{display:flex;gap:0.125rem;list-style:none}
-.nav-links a{font-size:0.82rem;font-weight:500;color:var(--ink-2);text-decoration:none;padding:0.4rem 0.8rem;border-radius:6px;transition:all 0.15s;}
-.nav-links a:hover{background:var(--bg-soft);color:var(--ink)}
-.nav-btn{padding:0.5rem 1.1rem;background:var(--ink);color:#fff;font-size:0.82rem;font-weight:600;border-radius:6px;text-decoration:none;transition:all 0.2s;}
-.nav-btn:hover{background:var(--violet);box-shadow:0 4px 16px rgba(124,58,237,0.35)}
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+#main-nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;
+  background:var(--nav-bg);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--hairline);
+}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.95rem;letter-spacing:0.02em;color:var(--fg);text-decoration:none;display:flex;align-items:center;gap:8px;cursor:pointer;}
+.logo-mark{width:22px;height:22px;border-radius:4px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links a{font-size:0.72rem;font-weight:500;color:var(--fg-muted);text-decoration:none;padding:0.4rem 0.9rem;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--fg)}
+.nav-right{display:flex;align-items:center;gap:0.75rem}
+.theme-toggle{
+  width:36px;height:36px;border-radius:50%;background:transparent;border:1px solid var(--hairline);
+  color:var(--fg-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:0.9rem;transition:all 0.2s;
+}
+.theme-toggle:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
+.nav-cta{
+  font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--bg);background:var(--fg);
+  padding:0.45rem 1.1rem;border-radius:var(--radius);text-decoration:none;transition:all 0.2s;
+}
+.nav-cta:hover{background:var(--accent-bright);color:#fff}
 
 /* ── CS SUB-NAV ── */
-#cs-subnav{position:fixed;top:60px;left:0;right:0;z-index:190;height:46px;display:none;align-items:center;padding:0 3rem;gap:0;background:var(--dark);border-bottom:1px solid rgba(255,255,255,0.07);}
-#cs-subnav .cs-back{display:flex;align-items:center;gap:5px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:600;color:rgba(255,255,255,0.35);background:none;border:none;cursor:pointer;padding:0 14px 0 0;margin-right:14px;border-right:1px solid rgba(255,255,255,0.1);transition:color 0.15s;white-space:nowrap;}
-#cs-subnav .cs-back:hover{color:var(--vg)}
-#cs-subnav .cs-tab{display:flex;align-items:center;gap:7px;padding:0 16px;height:46px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.4);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
-#cs-subnav .cs-tab:hover{color:rgba(255,255,255,0.8)}
-#cs-subnav .cs-tab.active{color:var(--vg);border-bottom-color:var(--vg);}
-#cs-subnav .cs-tab .tab-num{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
-#cs-subnav .cs-tab.active .tab-num{background:var(--vg);color:#000;}
+#cs-subnav{
+  position:fixed;top:56px;left:0;right:0;z-index:190;
+  height:42px;display:none;align-items:center;padding:0 2.5rem;
+  background:rgba(8,8,8,0.92);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(240,238,232,0.08);
+}
+#cs-subnav .cs-back{font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(240,238,232,0.35);background:none;border:none;cursor:pointer;padding:0 1.2rem 0 0;margin-right:1.2rem;border-right:1px solid rgba(240,238,232,0.08);transition:color 0.15s}
+#cs-subnav .cs-back:hover{color:#9F6EFF}
+#cs-subnav .cs-tab{font-size:0.7rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:rgba(240,238,232,0.35);background:none;border:none;border-bottom:1px solid transparent;cursor:pointer;padding:0 1rem;height:42px;transition:all 0.15s}
+#cs-subnav .cs-tab:hover{color:rgba(240,238,232,0.8)}
+#cs-subnav .cs-tab.active{color:#9F6EFF;border-bottom-color:#9F6EFF}
 
-/* ── MAIN PAGE ── */
-#main-page{padding-top:60px}
-.hero{padding:80px 3rem 4rem;text-align:center}
-.hero-badge{display:inline-flex;align-items:center;gap:7px;padding:0.35rem 1rem;border-radius:100px;background:var(--violet-light);border:1px solid var(--violet-mid);font-size:0.75rem;font-weight:600;letter-spacing:0.04em;color:var(--violet);margin-bottom:2rem;}
-.badge-pulse{width:6px;height:6px;border-radius:50%;background:var(--violet);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.85)}}
-.hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:800;letter-spacing:-0.035em;line-height:1.02;color:var(--ink);margin-bottom:1.5rem;max-width:880px;margin-left:auto;margin-right:auto;}
-.hero h1 .grad{background:linear-gradient(135deg,#7C3AED 0%,#4F46E5 50%,#2563EB 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-sub{font-size:1.05rem;color:var(--ink-2);max-width:560px;margin:0 auto 2.5rem;line-height:1.75;font-weight:400;}
-.hero-btns{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem}
-.btn-primary{display:inline-flex;align-items:center;gap:6px;padding:0.8rem 1.6rem;background:var(--ink);color:#fff;font-size:0.875rem;font-weight:600;border-radius:8px;text-decoration:none;transition:all 0.2s;}
-.btn-primary:hover{background:var(--violet);transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,58,237,0.3)}
-.btn-ghost{display:inline-flex;align-items:center;gap:6px;padding:0.8rem 1.6rem;background:transparent;color:var(--ink);font-size:0.875rem;font-weight:600;border-radius:8px;text-decoration:none;border:1.5px solid var(--border);transition:all 0.2s;}
-.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
-.stats-bar{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
-.stat-box{padding:2rem 1.5rem;text-align:center;border-right:1px solid var(--border);transition:background 0.2s;}
-.stat-box:last-child{border-right:none}.stat-box:hover{background:var(--bg-soft)}
-.stat-n{font-family:'Bricolage Grotesque',sans-serif;font-size:2.75rem;font-weight:800;letter-spacing:-0.04em;color:var(--ink);line-height:1;margin-bottom:0.4rem;}
-.stat-n em{color:var(--violet);font-style:normal}
-.stat-l{font-size:0.78rem;color:var(--ink-3);line-height:1.4;max-width:100px;margin:0 auto}
+/* ══════════════════════════════════════
+   HERO — TWO COLUMN
+══════════════════════════════════════ */
+#main-page{padding-top:56px}
 
-/* ── WORKED WITH ── */
-.worked{padding:2.5rem 3rem;background:var(--bg-soft);border-bottom:1px solid var(--border);margin-top:4rem}
-.worked-lbl{text-align:center;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1.5rem}
-.worked-row{display:flex;align-items:center;justify-content:center;gap:4rem;flex-wrap:wrap}
-.worked-co{display:flex;flex-direction:column;align-items:center;gap:0.5rem;cursor:default;}
-.worked-co span{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.72rem;color:var(--ink-3);letter-spacing:-0.01em;}
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:55% 45%;
+  border-bottom:1px solid var(--hairline);
+  position:relative;overflow:hidden;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:5rem 3rem 4rem 2.5rem;
+  position:relative;z-index:2;
+}
+.hero-right{
+  display:flex;align-items:center;justify-content:center;
+  border-left:1px solid var(--hairline);
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg, transparent, rgba(124,58,237,0.04));
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent-bright);margin-bottom:2rem;
+}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:var(--accent-bright);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+.hero-h1{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(3.5rem,7vw,7.5rem);font-weight:800;
+  letter-spacing:-0.04em;line-height:0.92;
+  color:var(--fg);margin-bottom:2.5rem;
+}
+.hero-h1 .italic{font-style:italic;font-weight:300;color:var(--fg-dim)}
+.hero-h1 .accent{color:var(--accent-bright)}
+.hero-h1 .outline{-webkit-text-stroke:1px var(--fg-dim);color:transparent}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.hero-sub{font-size:0.875rem;color:var(--fg-dim);line-height:1.8;max-width:380px;font-weight:300}
+.hero-actions{display:flex;gap:0.75rem;align-items:center;flex-shrink:0}
+.hero-scroll{
+  margin-top:3rem;display:flex;align-items:center;gap:10px;
+  font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--fg-muted);
+}
+.scroll-line{width:30px;height:1px;background:var(--hairline)}
+.btn-primary{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.6rem;background:var(--accent);color:#fff;border-radius:var(--radius);text-decoration:none;border:none;cursor:pointer;transition:all 0.2s}
+.btn-primary:hover{background:var(--accent-bright);transform:translateY(-2px);box-shadow:0 12px 32px var(--accent-glow)}
+.btn-ghost{font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.75rem 1.5rem;background:transparent;color:var(--fg-dim);border:1px solid var(--hairline);border-radius:var(--radius);text-decoration:none;transition:all 0.2s}
+.btn-ghost:hover{border-color:var(--fg-dim);color:var(--fg)}
 
-/* ── SECTIONS ── */
-.sec{padding:6rem 3rem}.sec-inner{max-width:1160px;margin:0 auto}
-.sec-soft{background:var(--bg-soft)}.sec-dark{background:var(--bg-dark)}
-.sec-tag{display:inline-flex;align-items:center;gap:7px;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--violet);margin-bottom:0.75rem;}
-.sec-tag::before{content:'';width:14px;height:2px;background:var(--violet);border-radius:1px}
-h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;letter-spacing:-0.025em;line-height:1.12;margin-bottom:0.75rem;}
-.sec-sub{font-size:0.95rem;color:var(--ink-2);max-width:500px;line-height:1.7}
-.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:center}
-.about-text p{font-size:0.95rem;color:var(--ink-2);line-height:1.8;margin-bottom:1rem}
-.about-text p:last-child{margin-bottom:0}.about-text strong{color:var(--ink);font-weight:600}
-.skill-panel{background:var(--bg-dark);border-radius:var(--radius);padding:2rem;display:flex;flex-direction:column;gap:1.5rem}
-.sk-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem}
-.sk-pills{display:flex;flex-wrap:wrap;gap:0.35rem}
-.sk-pill{font-size:0.76rem;font-weight:500;padding:0.3rem 0.7rem;border-radius:100px;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.65);transition:all 0.2s;cursor:default;}
-.sk-pill:hover{border-color:var(--violet-mid);color:#fff}
-.sk-pill-ai{background:rgba(124,58,237,0.2);border-color:rgba(124,58,237,0.4);color:var(--violet-mid)}
+/* ── PORTRAIT + ILLUSTRATIONS ── */
+.hero-portrait-wrap{
+  position:relative;width:300px;
+  display:flex;flex-direction:column;align-items:center;
+}
+.portrait-frame{
+  width:260px;height:320px;
+  border-radius:130px 130px 24px 24px;
+  overflow:hidden;position:relative;
+  border:1px solid var(--hairline);
+}
+.portrait-ring{
+  position:absolute;inset:-8px;
+  border-radius:140px 140px 32px 32px;
+  border:1px solid rgba(124,58,237,0.4);
+  pointer-events:none;z-index:5;
+}
+.portrait-frame::after{
+  content:'';position:absolute;inset:0;z-index:2;
+  background:linear-gradient(to bottom, transparent 55%, var(--bg) 100%);
+}
+#portrait-placeholder{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-family:'Bricolage Grotesque',sans-serif;font-size:5rem;font-weight:800;
+  color:var(--accent-bright);
+  background:linear-gradient(135deg,var(--bg-2),var(--bg-3));
+}
+#portrait-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:none}
+.portrait-label{
+  position:absolute;bottom:1.25rem;left:1.25rem;right:1.25rem;z-index:3;
+}
+.portrait-label-name{font-family:'Bricolage Grotesque',sans-serif;font-size:0.85rem;font-weight:700;color:var(--fg);line-height:1.2}
+.portrait-label-role{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-bright);margin-top:2px}
 
-/* ── BENTO ── */
-.proj-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
-.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;align-items:start;}
-.bc-w4{grid-column:span 4}.bc-w2{grid-column:span 2}.bc-w3{grid-column:span 3}
-.bcard{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform 0.25s ease,box-shadow 0.25s ease,border-color 0.2s;cursor:pointer;}
-.bcard:hover{transform:translateY(-5px);box-shadow:0 24px 56px rgba(0,0,0,0.09);border-color:var(--violet-mid)}
-.bthumb{width:100%;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-size:2.25rem;font-weight:800;letter-spacing:-0.04em;aspect-ratio:16/9;position:relative;overflow:hidden;}
-.bthumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
-.bc-w4 .bthumb{aspect-ratio:21/9}
-.th-v{background:linear-gradient(135deg,#F5F3FF,#DDD6FE);color:var(--violet)}
-.th-g{background:linear-gradient(135deg,#ECFDF5,#A7F3D0);color:var(--green)}
-.th-a{background:linear-gradient(135deg,#FFFBEB,#FDE68A);color:var(--amber)}
-.th-b{background:linear-gradient(135deg,#EFF6FF,#BFDBFE);color:var(--blue)}
-.th-r{background:linear-gradient(135deg,#FFF1F2,#FECDD3);color:#E11D48}
-.th-s{background:linear-gradient(135deg,#F0FDF4,#BBF7D0);color:#15803D}
-.bc-body{padding:1.25rem 1.5rem 1.5rem;flex:1;display:flex;flex-direction:column}
-.bc-tags{display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:0.7rem}
-.bc-tag{font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:4px;}
-.t-v{background:var(--violet-light);color:var(--violet)}.t-g{background:var(--green-light);color:var(--green)}
-.t-a{background:var(--amber-light);color:var(--amber)}.t-b{background:var(--blue-light);color:var(--blue)}
-.bc-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:-0.01em;line-height:1.25;margin-bottom:0.45rem;color:var(--ink);}
-.bc-desc{font-size:0.8rem;color:var(--ink-3);line-height:1.6;flex:1}
-.bc-ft{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:0.875rem;border-top:1px solid var(--border);}
-.bc-year{font-size:0.72rem;color:var(--ink-3);font-weight:500}.bc-arrow{font-size:0.72rem;font-weight:700;color:var(--violet)}
+/* Floating illustration elements */
+.illus-el{position:absolute;pointer-events:none;z-index:10}
+.illus-top{top:-20px;right:-30px}
+.illus-left{top:50%;left:-50px;transform:translateY(-50%)}
+.illus-bottom{bottom:40px;right:-40px}
+.illus-cursor-el{top:20px;left:-20px}
 
-/* ── NDA ── */
-.nda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
-.nda-card{background:#131313;border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:2rem;position:relative;overflow:hidden;transition:border-color 0.2s;}
-.nda-card:hover{border-color:rgba(124,58,237,0.4)}
-.nda-card::after{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.1),transparent 70%);pointer-events:none;}
-.nda-n{font-family:'Bricolage Grotesque',sans-serif;font-size:4rem;font-weight:800;color:rgba(255,255,255,0.04);line-height:1;letter-spacing:-0.05em;margin-bottom:1.5rem;}
-.nda-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.68rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.25rem 0.6rem;border-radius:4px;background:rgba(124,58,237,0.15);color:var(--violet-mid);border:1px solid rgba(124,58,237,0.25);margin-bottom:0.6rem;}
-.nda-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:0.65rem;line-height:1.25}
-.nda-desc{font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:1.7;margin-bottom:1.25rem}
-.nda-foot{display:flex;align-items:center;gap:6px;font-size:0.7rem;color:rgba(255,255,255,0.2);border-top:1px solid rgba(255,255,255,0.06);padding-top:0.875rem}
+/* Annotation bubble */
+.illus-annotation{
+  background:var(--accent);color:#fff;
+  padding:0.4rem 0.75rem;border-radius:6px 6px 6px 0;
+  font-size:0.62rem;font-weight:700;letter-spacing:0.06em;white-space:nowrap;
+  box-shadow:0 4px 20px rgba(124,58,237,0.4);
+}
+.illus-annotation::after{content:'';position:absolute;bottom:-6px;left:0;border:6px solid transparent;border-right-color:var(--accent);border-top-color:var(--accent);border-bottom:none;border-left:none}
 
-/* ── EXPERIENCE ── */
-.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem}
-.exp-card{padding:1.75rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);transition:border-color 0.2s,box-shadow 0.2s;}
-.exp-card:hover{border-color:var(--violet-mid);box-shadow:0 4px 16px rgba(124,58,237,0.08)}
-.exp-period{font-size:0.72rem;font-weight:600;color:var(--violet);letter-spacing:0.04em;margin-bottom:0.5rem}
-.exp-role{font-family:'Bricolage Grotesque',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:-0.01em;margin-bottom:0.25rem;color:var(--ink)}
-.exp-company{font-size:0.85rem;font-weight:500;color:var(--ink-3);margin-bottom:0.75rem}
-.exp-desc{font-size:0.825rem;color:var(--ink-2);line-height:1.65}
+/* Background grid dots */
+.hero-right::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle, rgba(124,58,237,0.2) 1px, transparent 1px);
+  background-size:28px 28px;
+  opacity:0.4;
+  z-index:0;
+}
+.hero-right::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center, transparent 40%, var(--bg) 100%);
+  z-index:1;
+}
 
-/* ── CONTACT ── */
-.contact-inner{max-width:720px;margin:0 auto;text-align:center}
-.sec-dark h2{color:#fff}
-.sec-dark .sec-sub{color:rgba(255,255,255,0.45);margin:0 auto 3rem}
-.contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:2rem}
-.contact-card{padding:1.5rem;border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);text-decoration:none;transition:border-color 0.2s,background 0.2s;display:block;}
-.contact-card:hover{border-color:var(--violet);background:rgba(124,58,237,0.08)}
-.cc-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.4rem}
-.cc-val{font-size:0.875rem;font-weight:600;color:rgba(255,255,255,0.8)}
-.contact-note{font-size:0.8rem;color:rgba(255,255,255,0.25);line-height:1.6}
-footer{background:#060606;border-top:1px solid rgba(255,255,255,0.04);padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
-footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
+/* ══════════════════════════════════════
+   STATS
+══════════════════════════════════════ */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--hairline)}
+.stat-box{padding:3rem 2.5rem;border-right:1px solid var(--hairline);transition:background 0.3s}
+.stat-box:last-child{border-right:none}
+.stat-box:hover{background:var(--bg-2)}
+.stat-n{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;letter-spacing:-0.05em;color:var(--fg);line-height:1;margin-bottom:0.5rem}
+.stat-n em{color:var(--accent-bright);font-style:normal}
+.stat-l{font-size:0.72rem;color:var(--fg-muted);line-height:1.5;max-width:160px;letter-spacing:0.02em}
 
-/* ── CASE STUDY ── */
-#cs{display:none;padding-top:106px;font-family:'Inter',sans-serif}
+/* ══════════════════════════════════════
+   MARQUEE
+══════════════════════════════════════ */
+.marquee-wrap{border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);overflow:hidden;padding:0.9rem 0;background:var(--bg-2)}
+.marquee-track{display:flex;gap:0;width:max-content;animation:marquee 28s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{display:flex;align-items:center;gap:1.25rem;padding:0 2rem;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg-muted);white-space:nowrap;border-right:1px solid var(--hairline)}
+.marquee-item img{height:18px;width:auto;object-fit:contain;filter:invert(1);opacity:0.4}
+[data-theme="light"] .marquee-item img{filter:none}
+.marquee-sep{color:var(--accent-bright);font-size:0.9rem}
+
+/* ══════════════════════════════════════
+   ABOUT SECTION
+══════════════════════════════════════ */
+.about-section{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--hairline);min-height:80vh}
+.about-left{padding:5rem 2.5rem;border-right:1px solid var(--hairline);display:flex;flex-direction:column;justify-content:space-between}
+.about-right{padding:5rem 2.5rem;display:flex;flex-direction:column;justify-content:center}
+.section-label{font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:2.5rem;display:flex;align-items:center;gap:10px}
+.section-label::before{content:'';width:20px;height:1px;background:var(--accent-bright)}
+.about-h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2rem,4vw,3.25rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1;color:var(--fg);margin-bottom:2rem}
+.about-h2 em{font-style:italic;font-weight:300;color:var(--fg-dim)}
+.about-p{font-size:0.9rem;color:var(--fg-dim);line-height:1.9;margin-bottom:1.25rem;font-weight:300}
+.about-p strong{color:var(--fg);font-weight:600}
+.about-p:last-of-type{margin-bottom:0}
+.skill-group{margin-bottom:1.75rem}
+.skill-group:last-child{margin-bottom:0}
+.skill-group-label{font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:0.75rem;border-bottom:1px solid var(--hairline);padding-bottom:0.5rem}
+.skill-pills{display:flex;flex-wrap:wrap;gap:0.4rem}
+.skill-pill{font-size:0.7rem;font-weight:500;padding:0.3rem 0.75rem;border:1px solid var(--hairline);border-radius:100px;color:var(--fg-dim);transition:all 0.2s;cursor:default;letter-spacing:0.02em}
+.skill-pill:hover{border-color:var(--accent-bright);color:var(--fg)}
+.skill-pill-ai{border-color:rgba(124,58,237,0.5);color:var(--accent-bright);background:rgba(124,58,237,0.1)}
+
+/* UX Process Illustration in About */
+.ux-process{
+  margin-top:3rem;padding:1.75rem;
+  border:1px solid var(--hairline);border-left:2px solid var(--accent-bright);
+  position:relative;overflow:hidden;
+}
+.ux-process::before{
+  content:'UX PROCESS';
+  position:absolute;top:1rem;right:1rem;
+  font-size:0.55rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--fg-muted);
+}
+.ux-steps{display:flex;gap:0;align-items:stretch}
+.ux-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0.75rem 0.5rem;position:relative}
+.ux-step::after{
+  content:'→';
+  position:absolute;right:-6px;top:50%;transform:translateY(-50%);
+  font-size:0.75rem;color:var(--fg-muted);z-index:1;
+}
+.ux-step:last-child::after{display:none}
+.ux-step-icon{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--hairline);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;margin-bottom:0.5rem;
+  background:var(--bg-2);
+  transition:border-color 0.2s, transform 0.2s;
+}
+.ux-step:hover .ux-step-icon{border-color:var(--accent-bright);transform:scale(1.1)}
+.ux-step-label{font-size:0.6rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--fg-muted)}
+.ux-step-sub{font-size:0.55rem;color:var(--fg-muted);opacity:0.6;margin-top:2px}
+
+/* ══════════════════════════════════════
+   PROJECTS
+══════════════════════════════════════ */
+.projects-section{border-bottom:1px solid var(--hairline)}
+.project-list{list-style:none}
+.project-item{
+  display:grid;grid-template-columns:80px 1fr auto auto;
+  align-items:center;gap:2rem;padding:1.75rem 2.5rem;
+  border-bottom:1px solid var(--hairline);
+  text-decoration:none;color:inherit;
+  transition:background 0.2s;cursor:pointer;position:relative;overflow:hidden;
+}
+.project-item:last-child{border-bottom:none}
+.project-item:hover{background:var(--bg-2)}
+.project-item:hover .proj-num{color:var(--accent-bright)}
+.project-item:hover .proj-arrow{opacity:1;transform:translate(0,0)}
+.project-item:hover .proj-preview{opacity:1;transform:translateY(-50%) scale(1)}
+.proj-num{font-family:'Bricolage Grotesque',sans-serif;font-size:0.75rem;font-weight:700;color:var(--fg-muted);letter-spacing:0.04em;transition:color 0.2s}
+.proj-info{display:flex;flex-direction:column;gap:0.35rem}
+.proj-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:-0.02em;color:var(--fg);transition:color 0.2s}
+.proj-tags{display:flex;gap:0.4rem;flex-wrap:wrap}
+.proj-tag{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:100px;border:1px solid var(--hairline);color:var(--fg-muted)}
+.proj-tag-accent{border-color:rgba(124,58,237,0.4);color:var(--accent-bright)}
+.proj-year{font-size:0.72rem;color:var(--fg-muted);letter-spacing:0.04em;white-space:nowrap}
+.proj-arrow{font-size:1rem;color:var(--accent-bright);opacity:0;transform:translate(-6px,6px);transition:all 0.2s}
+.proj-preview{
+  position:absolute;right:140px;top:50%;transform:translateY(-50%) scale(0.9);
+  width:180px;height:110px;border-radius:4px;overflow:hidden;
+  opacity:0;transition:all 0.3s ease;pointer-events:none;z-index:10;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);border:1px solid var(--hairline);
+}
+.proj-preview img{width:100%;height:100%;object-fit:cover}
+.proj-preview-v{background:linear-gradient(135deg,#2D1B69,#4C1D95)}
+.proj-preview-g{background:linear-gradient(135deg,#064E3B,#065F46)}
+.proj-preview-a{background:linear-gradient(135deg,#78350F,#92400E)}
+.proj-preview-b{background:linear-gradient(135deg,#1E3A5F,#1E40AF)}
+.proj-preview-r{background:linear-gradient(135deg,#4C0519,#881337)}
+.proj-preview-s{background:linear-gradient(135deg,#14532D,#166534)}
+
+/* ══════════════════════════════════════
+   NDA SECTION
+══════════════════════════════════════ */
+.nda-section{padding:5rem 2.5rem;border-bottom:1px solid var(--hairline)}
+.nda-header{margin-bottom:3rem}
+.nda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline);border:1px solid var(--hairline)}
+.nda-card{background:var(--bg-2);padding:2.5rem;transition:background 0.25s;position:relative;overflow:hidden}
+.nda-card:hover{background:var(--bg-3)}
+.nda-card::after{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.08),transparent 70%);pointer-events:none}
+.nda-num{font-family:'Bricolage Grotesque',sans-serif;font-size:5rem;font-weight:800;color:var(--fg-faint);line-height:1;letter-spacing:-0.06em;margin-bottom:1.5rem}
+.nda-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.6rem;border-radius:2px;background:rgba(124,58,237,0.12);color:var(--accent-bright);border:1px solid rgba(124,58,237,0.2);margin-bottom:0.75rem}
+.nda-title{font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;font-weight:700;color:var(--fg);margin-bottom:0.75rem;line-height:1.3}
+.nda-desc{font-size:0.78rem;color:var(--fg-muted);line-height:1.8;margin-bottom:1.5rem}
+.nda-foot{font-size:0.65rem;color:var(--fg-muted);opacity:0.5;letter-spacing:0.06em;text-transform:uppercase;border-top:1px solid var(--hairline);padding-top:1rem}
+
+/* ══════════════════════════════════════
+   EXPERIENCE
+══════════════════════════════════════ */
+.exp-section{border-bottom:1px solid var(--hairline)}
+.exp-header{padding:3rem 2.5rem 0}
+.exp-list{list-style:none}
+.exp-item{display:grid;grid-template-columns:220px 1fr;gap:3rem;padding:2.5rem 2.5rem;border-bottom:1px solid var(--hairline);transition:background 0.2s}
+.exp-item:last-child{border-bottom:none}
+.exp-item:hover{background:var(--bg-2)}
+.exp-left{display:flex;flex-direction:column;gap:0.4rem}
+.exp-period{font-size:0.68rem;font-weight:600;color:var(--accent-bright);letter-spacing:0.06em;text-transform:uppercase}
+.exp-company{font-family:'Bricolage Grotesque',sans-serif;font-size:1rem;font-weight:700;color:var(--fg);letter-spacing:-0.01em;line-height:1.2}
+.exp-right{display:flex;flex-direction:column;gap:0.5rem}
+.exp-role{font-family:'Bricolage Grotesque',sans-serif;font-size:1.1rem;font-weight:700;color:var(--fg);letter-spacing:-0.01em}
+.exp-desc{font-size:0.82rem;color:var(--fg-dim);line-height:1.75;font-weight:300}
+
+/* ══════════════════════════════════════
+   CONTACT
+══════════════════════════════════════ */
+.contact-section{min-height:60vh;display:flex;flex-direction:column;justify-content:center;padding:6rem 2.5rem;border-bottom:1px solid var(--hairline);position:relative;overflow:hidden}
+.contact-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(124,58,237,0.1) 0%,transparent 65%);pointer-events:none}
+.contact-h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(3rem,8vw,7rem);font-weight:800;letter-spacing:-0.04em;line-height:0.95;color:var(--fg);margin-bottom:3rem;max-width:900px}
+.contact-h2 em{font-style:italic;font-weight:300;color:var(--fg-dim)}
+.contact-cards{display:flex;gap:1px;background:var(--hairline);max-width:700px;margin-bottom:2rem}
+.contact-card{flex:1;padding:1.5rem;background:var(--bg-2);text-decoration:none;transition:background 0.2s}
+.contact-card:hover{background:var(--bg-3)}
+.cc-label{font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:0.5rem}
+.cc-val{font-size:0.875rem;font-weight:600;color:var(--fg)}
+.contact-note{font-size:0.72rem;color:var(--fg-muted);letter-spacing:0.02em}
+footer{padding:1.75rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;border-top:1px solid var(--hairline)}
+footer p{font-size:0.68rem;color:var(--fg-muted);letter-spacing:0.04em}
+
+/* ══════════════════════════════════════
+   CASE STUDIES
+══════════════════════════════════════ */
+#cs{display:none;padding-top:98px;font-family:'Inter',sans-serif}
 #cs h2{font-family:'Inter',sans-serif}
 .page{display:none}.page.active{display:block}
-.section{padding:64px 56px;font-family:'Inter',sans-serif;}
-.section.alt{background:var(--surface);}
-.section-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--vg);margin-bottom:10px;}
-.section-title{font-family:'Inter',sans-serif;font-size:34px;font-weight:800;color:#111827;letter-spacing:-0.02em;line-height:1.2;margin-bottom:14px;}
-.section-body{font-size:15px;color:var(--muted);line-height:1.8;max-width:640px;}
-.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:32px;}
-.four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;}
-.cs-hero{position:relative;overflow:hidden;padding:72px 56px 60px;}
-.hero-appraisal{background:linear-gradient(135deg,var(--dark) 0%,#1A2A10 50%,#1E3318 100%);}
-.hero-elevator{background:linear-gradient(135deg,#0D0D1A 0%,#1A1040 50%,#0D1A2E 100%);}
-.hero-workforce{background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 55%,#172535 100%);}
-.hero-appraisal::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(130,230,0,.14) 0%,transparent 55%);pointer-events:none;}
-.hero-elevator::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 35%,rgba(124,58,237,.18) 0%,transparent 55%);pointer-events:none;}
-.hero-workforce::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 40%,rgba(78,107,124,.18) 0%,transparent 55%);pointer-events:none;}
-.project-label{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px;border:1px solid;}
-.project-label.green{background:rgba(130,230,0,.1);border-color:rgba(130,230,0,.3);color:var(--vg);}
-.project-label.purple{background:rgba(124,58,237,.15);border-color:rgba(124,58,237,.4);color:#C4B5FD;}
-.project-label.teal{background:rgba(78,107,124,.15);border-color:rgba(78,107,124,.4);color:#93C5D4;}
-.cs-hero h1{font-family:'Inter',sans-serif;font-size:52px;font-weight:900;color:#fff;line-height:1.06;letter-spacing:-0.03em;max-width:680px;margin-bottom:16px;}
-.cs-hero h1 em{font-style:normal}
-.hero-sub-cs{font-size:16px;color:#9CA3AF;max-width:540px;line-height:1.75;margin-bottom:32px;}
-.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;}
-.hero-tag{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#D1D5DB;font-size:11px;font-weight:500;padding:4px 13px;border-radius:100px;}
-.hero-tag.accent-green{background:rgba(130,230,0,.1);border-color:rgba(130,230,0,.25);color:var(--vg);}
-.hero-tag.accent-purple{background:rgba(124,58,237,.15);border-color:rgba(124,58,237,.3);color:#C4B5FD;}
-.hero-tag.accent-teal{background:rgba(78,107,124,.15);border-color:rgba(78,107,124,.35);color:#93C5D4;}
-.hero-meta{display:flex;gap:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;}
-.hero-meta-item label{display:block;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#374151;margin-bottom:4px;}
-.hero-meta-item span{font-size:13px;font-weight:500;color:#E5E7EB;}
-.cs-card{background:#fff;border:1px solid var(--csborder);border-radius:14px;padding:24px;box-shadow:0 1px 6px rgba(0,0,0,.05);}
-.cs-card.green-left{border-left:4px solid var(--vg)}.cs-card.purple-left{border-left:4px solid var(--violet)}.cs-card.teal-left{border-left:4px solid var(--vt);}
-.cs-card h4{font-size:14px;font-weight:700;color:#111827;margin-bottom:9px;}.cs-card p{font-size:13px;color:var(--muted);line-height:1.7;}
-.hmw{background:linear-gradient(135deg,var(--dark2),var(--dark));border-radius:18px;padding:44px;margin-top:40px;text-align:center;}
-.hmw label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:12px;}
-.hmw-green label{color:var(--vg)}.hmw-purple label{color:#C4B5FD;}.hmw-teal label{color:#93C5D4;}
-.hmw h3{font-family:'Inter',sans-serif;font-size:21px;font-weight:700;color:#fff;line-height:1.6;max-width:620px;margin:0 auto;}
-.stat-row{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap;}
-.stat-row .stat-box{background:#fff;border:1px solid var(--csborder);border-radius:12px;padding:20px;flex:1;min-width:120px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.04);}
-.stat-num{font-size:34px;font-weight:900;letter-spacing:-0.04em;display:block;}
-.stat-num.green{color:var(--vg-dark)}.stat-num.purple{color:var(--violet)}.stat-num.teal{color:var(--vt);}
-.stat-lbl{font-size:11px;color:var(--muted);margin-top:4px;font-weight:500;line-height:1.4;}
-.insight{background:#fff;border-radius:12px;padding:22px;border:1px solid var(--csborder);box-shadow:0 1px 4px rgba(0,0,0,.04);}
-.insight-icon{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:12px;}
-.insight-icon.green{background:var(--vg-light)}.insight-icon.purple{background:var(--violet-light)}.insight-icon.teal{background:var(--vt-light);}
-.insight h4{font-size:13px;font-weight:700;color:#111827;margin-bottom:7px;}.insight p{font-size:12px;color:var(--muted);line-height:1.65;}
-.timeline{display:flex;margin-top:40px;position:relative;}
-.timeline::before{content:'';position:absolute;top:23px;left:24px;right:24px;height:2px;background:var(--vg-light);z-index:0;}
-.tl-step{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;}
-.tl-dot{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:12px;background:#fff;border:3px solid var(--vg);box-shadow:0 0 0 4px var(--vg-light);}
-.tl-step h5{font-size:12px;font-weight:700;color:#111827;text-align:center;margin-bottom:5px;}.tl-step p{font-size:11px;color:var(--muted);text-align:center;line-height:1.5;padding:0 5px;}
-.img-grid{display:grid;gap:14px;}.img-grid.two{grid-template-columns:1fr 1fr;}.img-grid.one{grid-template-columns:1fr;}
-.img-card{border-radius:12px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1);border:1px solid var(--csborder);}
-.img-card img{width:100%;height:auto;display:block;}
-.flow-row{margin-top:32px;}
-.flow-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-.flow-badge{padding:4px 13px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.05em;}
-.flow-badge.green{background:var(--vg-light);color:var(--vg-dark);border:1px solid rgba(130,230,0,.3);}
-.flow-badge.purple{background:var(--violet-light);color:var(--violet);border:1px solid rgba(124,58,237,.3);}
-.flow-badge.teal{background:var(--vt-light);color:var(--vt);border:1px solid rgba(78,107,124,.3);}
-.flow-title{font-size:17px;font-weight:700;color:#111827;}
-.annotation{border-left:3px solid;padding:11px 15px;font-size:13px;line-height:1.65;border-radius:0 8px 8px 0;margin-top:10px;}
-.annotation.green{background:var(--vg-light);border-color:var(--vg);color:#1A3A00;}
-.annotation.purple{background:var(--violet-light);border-color:var(--violet);color:#3B0764;}
-.annotation.teal{background:var(--vt-light);border-color:var(--vt);color:#1A2E38;}
-.screen-wrap{border-radius:14px;overflow:hidden;border:1px solid var(--csborder);box-shadow:0 4px 20px rgba(0,0,0,.1);}
-.chrome{background:#1A2332;padding:7px 12px;display:flex;align-items:center;gap:7px;}
-.chrome-dot{width:8px;height:8px;border-radius:50%;}.chrome-bar{flex:1;height:5px;background:rgba(255,255,255,.1);border-radius:3px;max-width:220px;}
-.ia-box{background:#fff;border:1px solid var(--csborder);border-radius:14px;padding:28px;margin-top:32px;overflow-x:auto;}
-.ia-root-node{font-size:12px;font-weight:700;padding:9px 20px;border-radius:7px;white-space:nowrap;}
-.ia-root-node.teal{background:var(--dark2);color:#93C5D4;border:1px solid rgba(78,107,124,.3);}
-.ia-con-v{width:2px;height:22px;background:var(--csborder);margin:0 auto;}
-.ia-h{display:flex;justify-content:center;position:relative;}
-.ia-h::before{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:var(--csborder);}
-.ia-branch{display:flex;flex-direction:column;align-items:center;padding:0 8px;}
-.ia-branch-v{width:2px;height:18px;background:var(--csborder);margin:0 auto;}
-.ia-page-node{font-size:10px;font-weight:700;padding:6px 12px;border-radius:5px;white-space:nowrap;}
-.ia-page-node.teal{background:var(--vt-light);color:var(--vt);border:1px solid rgba(78,107,124,.3);}
-.ia-leaf{background:var(--surface);border:1px solid var(--csborder);color:var(--muted);font-size:9px;font-weight:500;padding:3px 9px;border-radius:4px;white-space:nowrap;margin-top:3px;}
-.decision{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;}
-.d-side{background:#fff;border:1px solid var(--csborder);border-radius:12px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.04);}
-.d-side.before{border-top:3px solid #EF4444}.d-side.after-green{border-top:3px solid var(--vg)}.d-side.after-purple{border-top:3px solid var(--violet)}.d-side.after-teal{border-top:3px solid var(--vt);}
-.d-side label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:9px;}
-.d-side.before label{color:#EF4444}.d-side.after-green label{color:var(--vg-dark)}.d-side.after-purple label{color:var(--violet)}.d-side.after-teal label{color:var(--vt);}
-.d-side h5{font-size:13px;font-weight:700;color:#111827;margin-bottom:7px;}.d-side p{font-size:12px;color:var(--muted);line-height:1.65;}
-.outcome-card{background:#fff;border-radius:12px;padding:22px;border:1px solid var(--csborder);box-shadow:0 1px 4px rgba(0,0,0,.04);text-align:center;}
-.outcome-card.green-top{border-top:3px solid var(--vg)}.outcome-card.purple-top{border-top:3px solid var(--violet)}.outcome-card.teal-top{border-top:3px solid var(--vt);}
-.outcome-num{font-size:40px;font-weight:900;letter-spacing:-0.04em;display:block;margin-bottom:3px;}
-.outcome-num.green{color:var(--vg-dark)}.outcome-num.purple{color:var(--violet)}.outcome-num.teal{color:var(--vt);}
-.outcome-label{font-size:12px;color:#111827;font-weight:600;}.outcome-sub{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4;}
-.learning{display:flex;gap:14px;padding:18px 22px;background:#fff;border-radius:11px;border:1px solid var(--csborder);margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
-.l-num{font-size:30px;font-weight:900;letter-spacing:-0.04em;flex-shrink:0;line-height:1;opacity:.35;}
-.l-num.green{color:var(--vg)}.l-num.purple{color:var(--violet)}.l-num.teal{color:var(--vt);}
-.l-body h5{font-size:13px;font-weight:700;color:#111827;margin-bottom:4px;}.l-body p{font-size:12px;color:var(--muted);line-height:1.65;}
-.cs-footer{background:var(--dark);padding:52px 56px;text-align:center;font-family:'Inter',sans-serif;}
-.f-vdot{width:32px;height:32px;border-radius:7px;background:var(--vg);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#000;font-style:italic;}
-.cs-footer h3{font-family:'Inter',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:5px;}
-.cs-footer p{font-size:13px;color:#6B7280;margin-bottom:24px;}
-.footer-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}.footer-link{color:var(--vg);font-size:12px;font-weight:600;text-decoration:none;border:1px solid rgba(130,230,0,.25);padding:7px 18px;border-radius:100px;}
-.footer-credit{margin-top:28px;font-size:11px;color:#374151;}
+.section{padding:5rem 2.5rem;border-bottom:1px solid var(--hairline)}
+.section.alt{background:var(--bg-2)}
+.cs-section-label{font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.cs-section-label::before{content:'';width:20px;height:1px;background:var(--accent-bright)}
+.section-title{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:800;color:var(--fg);letter-spacing:-0.03em;line-height:1.1;margin-bottom:1.25rem}
+.section-body{font-size:0.9rem;color:var(--fg-dim);line-height:1.9;max-width:680px;font-weight:300}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;margin-top:2.5rem;background:var(--hairline)}
+.four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:2.5rem;background:var(--hairline)}
+.cs-hero{position:relative;overflow:hidden;padding:5rem 2.5rem 4rem;border-bottom:1px solid rgba(240,238,232,0.08)}
+.hero-appraisal{background:linear-gradient(135deg,#050A00,#0A1A05)}
+.hero-elevator{background:linear-gradient(135deg,#050508,#0D0A1F)}
+.hero-workforce{background:linear-gradient(135deg,#04080D,#0A1220)}
+.hero-appraisal::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(130,230,0,.12),transparent 55%);pointer-events:none}
+.hero-elevator::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(124,58,237,.14),transparent 55%);pointer-events:none}
+.hero-workforce::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(78,107,124,.16),transparent 55%);pointer-events:none}
+.project-label{display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border-radius:2px;font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2rem;border:1px solid}
+.project-label.green{background:rgba(130,230,0,.08);border-color:rgba(130,230,0,.25);color:#82E600}
+.project-label.purple{background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.3);color:#9F6EFF}
+.project-label.teal{background:rgba(78,107,124,.1);border-color:rgba(78,107,124,.3);color:#93C5D4}
+.cs-hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:800;color:#F0EEE8;line-height:0.95;letter-spacing:-0.04em;max-width:800px;margin-bottom:1.5rem}
+.cs-hero h1 em{font-style:italic;font-weight:300}
+.hero-appraisal h1 em{color:#82E600}.hero-elevator h1 em{color:#9F6EFF}.hero-workforce h1 em{color:#60A5FA}
+.hero-sub-cs{font-size:0.9rem;color:rgba(240,238,232,0.5);max-width:540px;line-height:1.8;margin-bottom:2.5rem;font-weight:300}
+.hero-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:3rem}
+.hero-tag{font-size:0.62rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.3rem 0.75rem;border-radius:100px;background:rgba(240,238,232,.06);border:1px solid rgba(240,238,232,.1);color:rgba(240,238,232,0.5)}
+.hero-tag.accent-green{background:rgba(130,230,0,.08);border-color:rgba(130,230,0,.2);color:#82E600}
+.hero-tag.accent-purple{background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.25);color:#9F6EFF}
+.hero-tag.accent-teal{background:rgba(78,107,124,.1);border-color:rgba(78,107,124,.3);color:#93C5D4}
+.hero-meta{display:flex;gap:3rem;padding-top:2.5rem;border-top:1px solid rgba(240,238,232,.08);flex-wrap:wrap}
+.hero-meta-item label{display:block;font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,238,232,0.3);margin-bottom:0.35rem}
+.hero-meta-item span{font-size:0.82rem;font-weight:500;color:#F0EEE8}
+.cs-card{background:var(--bg-2);border:1px solid var(--hairline);padding:1.75rem}
+.cs-card.green-left{border-left:2px solid #82E600}.cs-card.purple-left{border-left:2px solid #9F6EFF}.cs-card.teal-left{border-left:2px solid #4E6B7C}
+.cs-card h4{font-size:0.85rem;font-weight:700;color:var(--fg);margin-bottom:0.6rem}
+.cs-card p{font-size:0.78rem;color:var(--fg-muted);line-height:1.75}
+.hmw{background:var(--bg-2);border:1px solid var(--hairline);border-left:3px solid var(--accent-bright);padding:3rem;margin-top:2.5rem}
+.hmw label{font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:1rem;color:var(--accent-bright)}
+.hmw h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;font-weight:600;color:var(--fg);line-height:1.6;font-style:italic}
+.stat-row{display:flex;gap:1px;margin-top:2.5rem;flex-wrap:wrap;background:var(--hairline)}
+.stat-row .stat-box{background:var(--bg-2);border:none;padding:1.75rem;flex:1;min-width:110px;text-align:left}
+.stat-row .stat-box:hover{background:var(--bg-3)}
+.stat-num{font-family:'Bricolage Grotesque',sans-serif;font-size:2.5rem;font-weight:800;letter-spacing:-0.04em;display:block;line-height:1}
+.stat-num.green{color:#82E600}.stat-num.purple{color:#9F6EFF}.stat-num.teal{color:#4E6B7C}
+.stat-lbl{font-size:0.7rem;color:var(--fg-muted);margin-top:0.5rem;font-weight:400;line-height:1.4}
+.insight{background:var(--bg-2);padding:1.75rem;border:1px solid var(--hairline)}
+.insight-icon{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:1rem}
+.insight-icon.green{background:rgba(130,230,0,.1)}.insight-icon.purple{background:rgba(124,58,237,.1)}.insight-icon.teal{background:rgba(78,107,124,.12)}
+.insight h4{font-size:0.82rem;font-weight:700;color:var(--fg);margin-bottom:0.5rem}
+.insight p{font-size:0.75rem;color:var(--fg-muted);line-height:1.7}
+.timeline{display:flex;margin-top:2.5rem;position:relative}
+.timeline::before{content:'';position:absolute;top:20px;left:20px;right:20px;height:1px;background:var(--hairline);z-index:0}
+.tl-step{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1}
+.tl-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:1rem;background:var(--bg-2);border:1px solid var(--hairline)}
+.tl-step h5{font-size:0.72rem;font-weight:700;color:var(--fg);text-align:center;margin-bottom:0.3rem;letter-spacing:0.04em;text-transform:uppercase}
+.tl-step p{font-size:0.68rem;color:var(--fg-muted);text-align:center;line-height:1.5;padding:0 5px}
+.img-grid{display:grid;gap:2px}.img-grid.two{grid-template-columns:1fr 1fr}.img-grid.one{grid-template-columns:1fr}
+.img-card{overflow:hidden}.img-card img{width:100%;height:auto;display:block;transition:transform 0.4s ease}
+.img-card:hover img{transform:scale(1.03)}
+.flow-row{margin-top:2.5rem}
+.flow-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid var(--hairline)}
+.flow-badge{padding:0.25rem 0.75rem;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:2px}
+.flow-badge.green{background:rgba(130,230,0,.1);color:#82E600;border:1px solid rgba(130,230,0,.2)}
+.flow-badge.purple{background:rgba(124,58,237,.1);color:#9F6EFF;border:1px solid rgba(124,58,237,.2)}
+.flow-badge.teal{background:rgba(78,107,124,.12);color:#93C5D4;border:1px solid rgba(78,107,124,.25)}
+.flow-title{font-size:1rem;font-weight:600;color:var(--fg)}
+.annotation{border-left:2px solid;padding:0.875rem 1.25rem;font-size:0.8rem;line-height:1.7;margin-top:0.75rem}
+.annotation.green{background:rgba(130,230,0,.05);border-color:#82E600;color:var(--fg-dim)}
+.annotation.purple{background:rgba(124,58,237,.06);border-color:#9F6EFF;color:var(--fg-dim)}
+.annotation.teal{background:rgba(78,107,124,.07);border-color:#4E6B7C;color:var(--fg-dim)}
+.ia-box{background:var(--bg-2);border:1px solid var(--hairline);padding:2.5rem;margin-top:2.5rem;overflow-x:auto}
+.ia-root-node{font-size:0.72rem;font-weight:700;padding:0.6rem 1.25rem;border-radius:3px;white-space:nowrap;display:inline-block}
+.ia-root-node.teal{background:rgba(78,107,124,.15);color:#93C5D4;border:1px solid rgba(78,107,124,.3)}
+.ia-con-v{width:1px;height:20px;background:var(--hairline);margin:0 auto}
+.ia-h{display:flex;justify-content:center;position:relative}
+.ia-h::before{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;background:var(--hairline)}
+.ia-branch{display:flex;flex-direction:column;align-items:center;padding:0 8px}
+.ia-branch-v{width:1px;height:16px;background:var(--hairline);margin:0 auto}
+.ia-page-node{font-size:0.65rem;font-weight:700;padding:0.4rem 0.75rem;border-radius:2px;white-space:nowrap}
+.ia-page-node.teal{background:rgba(78,107,124,.12);color:#93C5D4;border:1px solid rgba(78,107,124,.25)}
+.ia-leaf{background:var(--bg-3);border:1px solid var(--hairline);color:var(--fg-muted);font-size:0.6rem;font-weight:500;padding:0.2rem 0.6rem;white-space:nowrap;margin-top:3px}
+.decision{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:1px;background:var(--hairline)}
+.d-side{background:var(--bg-2);padding:2rem}
+.d-side.before{border-top:2px solid rgba(239,68,68,.5)}.d-side.after-green{border-top:2px solid #82E600}.d-side.after-purple{border-top:2px solid #9F6EFF}.d-side.after-teal{border-top:2px solid #4E6B7C}
+.d-side label{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:0.75rem}
+.d-side.before label{color:rgba(239,68,68,.7)}.d-side.after-green label{color:#82E600}.d-side.after-purple label{color:#9F6EFF}.d-side.after-teal label{color:#4E6B7C}
+.d-side h5{font-size:0.85rem;font-weight:700;color:var(--fg);margin-bottom:0.5rem}
+.d-side p{font-size:0.75rem;color:var(--fg-muted);line-height:1.7}
+.outcome-card{background:var(--bg-2);padding:2rem;text-align:left}
+.outcome-card.green-top{border-top:2px solid #82E600}.outcome-card.purple-top{border-top:2px solid #9F6EFF}.outcome-card.teal-top{border-top:2px solid #4E6B7C}
+.outcome-num{font-family:'Bricolage Grotesque',sans-serif;font-size:3rem;font-weight:800;letter-spacing:-0.04em;display:block;margin-bottom:0.35rem}
+.outcome-num.green{color:#82E600}.outcome-num.purple{color:#9F6EFF}.outcome-num.teal{color:#4E6B7C}
+.outcome-label{font-size:0.78rem;color:var(--fg);font-weight:600}
+.outcome-sub{font-size:0.68rem;color:var(--fg-muted);margin-top:0.25rem;line-height:1.4}
+.learning{display:flex;gap:1.5rem;padding:1.75rem 2rem;background:var(--bg-2);border:1px solid var(--hairline);margin-bottom:1px}
+.l-num{font-family:'Bricolage Grotesque',sans-serif;font-size:2.5rem;font-weight:800;letter-spacing:-0.04em;flex-shrink:0;line-height:1;opacity:.2}
+.l-num.green{color:#82E600}.l-num.purple{color:#9F6EFF}.l-num.teal{color:#4E6B7C}
+.l-body h5{font-size:0.85rem;font-weight:700;color:var(--fg);margin-bottom:0.4rem}
+.l-body p{font-size:0.78rem;color:var(--fg-muted);line-height:1.7}
+.cs-footer{background:var(--bg-2);padding:4rem 2.5rem;text-align:center;border-top:1px solid var(--hairline)}
+.cs-footer h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;font-weight:700;color:var(--fg);margin-bottom:0.4rem}
+.cs-footer p{font-size:0.8rem;color:var(--fg-muted);margin-bottom:2rem}
+.footer-links{display:flex;justify-content:center;gap:0.75rem;flex-wrap:wrap}
+.footer-link{color:var(--accent-bright);font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(124,58,237,.3);padding:0.5rem 1.25rem;border-radius:2px;transition:all 0.2s}
+.footer-link:hover{background:rgba(124,58,237,.15);border-color:var(--accent-bright)}
+.footer-credit{margin-top:2rem;font-size:0.68rem;color:var(--fg-muted)}
 
 /* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.hero-badge{animation:fadeUp 0.5s ease both}.hero h1{animation:fadeUp 0.55s 0.08s ease both}
-.hero-sub{animation:fadeUp 0.55s 0.15s ease both}.hero-btns{animation:fadeUp 0.55s 0.22s ease both}
-.stats-bar{animation:fadeUp 0.6s 0.3s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp 0.7s ease both}
+.fade-up-1{animation-delay:0.08s}.fade-up-2{animation-delay:0.2s}.fade-up-3{animation-delay:0.32s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.illus-el{animation:float 4s ease-in-out infinite}
+.illus-left{animation-delay:1s}
+.illus-bottom{animation-delay:2s}
+.illus-cursor-el{animation-delay:0.5s}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  #main-nav,.hero,.sec,.worked,footer{padding-left:2rem;padding-right:2rem}
-  #cs-subnav{padding:0 2rem}
-  .stats-bar{margin-left:2rem;margin-right:2rem}
-  .about-grid,.exp-grid{grid-template-columns:1fr}
-  .bento{grid-template-columns:1fr 1fr}
-  .bc-w4,.bc-w2,.bc-w3{grid-column:span 2}
-  .nda-grid,.three-col,.four-col{grid-template-columns:1fr}
-  .contact-cards{grid-template-columns:1fr}
-  .section{padding:48px 32px}.cs-hero{padding:56px 32px 48px}
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-right{display:none}
+  .hero-left{padding:5rem 2.5rem 4rem}
+  #main-nav,footer{padding-left:1.5rem;padding-right:1.5rem}
+  .about-section{grid-template-columns:1fr}
+  .about-left{border-right:none;border-bottom:1px solid var(--hairline);padding:3rem 1.5rem}
+  .about-right{padding:3rem 1.5rem}
+  .stats-bar{grid-template-columns:1fr 1fr}
+  .stat-box{border-right:none;border-bottom:1px solid var(--hairline)}
+  .nda-grid{grid-template-columns:1fr}
+  .project-item{grid-template-columns:50px 1fr auto}
+  .proj-year{display:none}.proj-preview{display:none}
+  .three-col,.four-col{grid-template-columns:1fr}
+  .decision{grid-template-columns:1fr}
+  .section{padding:3rem 1.5rem}
+  .cs-hero{padding:3rem 1.5rem 2.5rem}
+  .nda-section,.exp-header,.contact-section{padding-left:1.5rem;padding-right:1.5rem}
+  .exp-item{grid-template-columns:1fr;gap:0.75rem;padding:2rem 1.5rem}
+  .contact-cards{flex-direction:column}
+  #cs-subnav{padding:0 1.5rem}
 }
 @media(max-width:640px){
-  #main-nav{padding:0 1.25rem}.nav-links{display:none}
-  .hero,.sec,.worked,footer{padding-left:1.25rem;padding-right:1.25rem}
-  .stats-bar{grid-template-columns:1fr 1fr;margin:0 1.25rem}
-  .stat-box{border-right:none;border-bottom:1px solid var(--border)}
-  .bento{grid-template-columns:1fr}
-  .bc-w4,.bc-w2,.bc-w3{grid-column:span 1}
-  #cs-subnav{padding:0 1rem}
-  .decision{grid-template-columns:1fr}
-  .cs-hero h1{font-size:36px}.section{padding:36px 20px}
-  .cs-footer{padding:36px 20px}
+  #main-nav{padding:0 1rem}.nav-links{display:none}
+  .hero-h1{font-size:3.5rem}
+  .stats-bar{grid-template-columns:1fr}
+  #cs-subnav{padding:0 1rem;overflow-x:auto}
+  .ux-steps{flex-wrap:wrap}
+  .ux-step::after{display:none}
 }
 </style>
 </head>
@@ -287,22 +534,27 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
 
 <!-- MAIN NAV -->
 <nav id="main-nav">
-  <div role="button" tabindex="0" class="logo" onclick="showMainPage()" onkeydown="if(event.key==='Enter')showMainPage()"><span class="logo-dot"></span>Sarah Abouzainah</div>
+  <div role="button" tabindex="0" class="logo" onclick="showMainPage()" onkeydown="if(event.key==='Enter')showMainPage()">
+    <div class="logo-mark">SA</div>Sarah Abouzainah
+  </div>
   <ul class="nav-links" id="main-nav-links">
-    <li><a href="#about" onclick="showMainPage()">About</a></li>
-    <li><a href="#work" onclick="showMainPage()">Work</a></li>
-    <li><a href="#experience" onclick="showMainPage()">Experience</a></li>
-    <li><a href="#contact" onclick="showMainPage()">Contact</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:sarah.abouzaina@gmail.com" class="nav-btn">Get in touch</a>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle light/dark theme">☀️</button>
+    <a href="mailto:sarah.abouzaina@gmail.com" class="nav-cta">Get in touch</a>
+  </div>
 </nav>
 
 <!-- CS SUB-NAV -->
 <div id="cs-subnav">
   <button class="cs-back" onclick="showMainPage()">← Portfolio</button>
-  <button class="cs-tab active" data-page="appraisal" onclick="switchPage('appraisal',this)"><span class="tab-num">1</span> Valeo Appraisal Process</button>
-  <button class="cs-tab" data-page="elevator" onclick="switchPage('elevator',this)"><span class="tab-num">2</span> 10,000-Floor Elevator</button>
-  <button class="cs-tab" data-page="workforce" onclick="switchPage('workforce',this)"><span class="tab-num">3</span> Workforce Manager</button>
+  <button class="cs-tab active" data-page="appraisal" onclick="switchPage('appraisal',this)">01 · Appraisal</button>
+  <button class="cs-tab" data-page="elevator" onclick="switchPage('elevator',this)">02 · Elevator</button>
+  <button class="cs-tab" data-page="workforce" onclick="switchPage('workforce',this)">03 · Workforce</button>
 </div>
 
 
@@ -311,221 +563,309 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
 ══════════════════════════════════ -->
 <div id="main-page">
 
-<div class="hero">
-  <div class="hero-badge"><span class="badge-pulse"></span>Open to design leadership roles</div>
-  <h1>Where <span class="grad">design strategy</span> meets AI-native craft</h1>
-  <p class="hero-sub">Product Design Leader with 16+ years building enterprise B2B SaaS — now designing with Figma Make, NotebookLM, and vibe coding at the core of every workflow.</p>
-  <div class="hero-btns">
-    <a href="#work" class="btn-primary">View work ↓</a>
-    <a href="https://www.behance.net/SarahAbouzainah" target="_blank" class="btn-ghost">Behance ↗</a>
+<!-- HERO — Two column: big type LEFT · portrait + illustrations RIGHT -->
+<section class="hero">
+
+  <!-- LEFT: Text content -->
+  <div class="hero-left">
+    <div class="hero-badge fade-up"><span class="badge-dot"></span>Open to design leadership roles</div>
+    <h1 class="hero-h1 fade-up fade-up-1">
+      Design<br>
+      <span class="italic">strategy</span><br>
+      <span class="outline">meets</span><br>
+      <span class="accent">AI craft</span>
+    </h1>
+    <div class="hero-bottom fade-up fade-up-2">
+      <p class="hero-sub">Product Design Leader · 16+ years building enterprise B2B SaaS across Automotive, Telecom &amp; R&amp;D — with Figma Make, NotebookLM &amp; vibe coding at the core of every workflow.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn-primary">View work</a>
+        <a href="https://www.behance.net/SarahAbouzainah" target="_blank" class="btn-ghost">Behance ↗</a>
+      </div>
+    </div>
+    <div class="hero-scroll fade-up fade-up-3"><div class="scroll-line"></div>Scroll</div>
   </div>
-</div>
 
+  <!-- RIGHT: Portrait + floating illustration elements -->
+  <div class="hero-right">
+
+    <!-- Floating annotation top-left -->
+    <div class="illus-el illus-cursor-el" style="top:60px;left:30px;z-index:12">
+      <div class="illus-annotation">16+ yrs Experience ✦</div>
+    </div>
+
+    <!-- Floating wireframe card top-right -->
+    <div class="illus-el illus-top" style="top:50px;right:20px;z-index:12">
+      <svg width="130" height="84" viewBox="0 0 130 84" xmlns="http://www.w3.org/2000/svg" class="illus-screen">
+        <rect x="0" y="0" width="130" height="84" rx="7" fill="rgba(124,58,237,0.07)" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
+        <rect x="0" y="0" width="130" height="16" rx="7" fill="rgba(124,58,237,0.15)"/>
+        <circle cx="10" cy="8" r="3" fill="rgba(239,68,68,0.6)"/><circle cx="20" cy="8" r="3" fill="rgba(245,158,11,0.6)"/><circle cx="30" cy="8" r="3" fill="rgba(130,230,0,0.6)"/>
+        <rect x="45" y="5" width="72" height="6" rx="3" fill="rgba(240,238,232,0.08)"/>
+        <rect x="9" y="24" width="60" height="5" rx="2" fill="rgba(159,110,255,0.6)"/>
+        <rect x="9" y="34" width="44" height="4" rx="2" fill="rgba(240,238,232,0.15)"/>
+        <rect x="9" y="42" width="52" height="4" rx="2" fill="rgba(240,238,232,0.1)"/>
+        <rect x="9" y="50" width="38" height="4" rx="2" fill="rgba(240,238,232,0.08)"/>
+        <rect x="9" y="62" width="40" height="12" rx="6" fill="rgba(124,58,237,0.55)"/>
+        <text x="14" y="71" font-family="Inter,sans-serif" font-size="6" fill="white" font-weight="600">Prototype</text>
+        <rect x="80" y="24" width="42" height="42" rx="4" fill="rgba(130,230,0,0.08)" stroke="rgba(130,230,0,0.25)" stroke-width="1"/>
+        <line x1="80" y1="24" x2="122" y2="66" stroke="rgba(130,230,0,0.15)" stroke-width="0.75"/>
+        <line x1="122" y1="24" x2="80" y2="66" stroke="rgba(130,230,0,0.15)" stroke-width="0.75"/>
+      </svg>
+    </div>
+
+    <!-- Portrait photo -->
+    <div class="hero-portrait-wrap" style="position:relative;z-index:11">
+      <div class="portrait-frame">
+        <div class="portrait-ring"></div>
+        <div id="portrait-placeholder">SA</div>
+        <img id="portrait-img" alt="Sarah Abouzainah">
+        <div class="portrait-label">
+          <div class="portrait-label-name">Sarah Abouzainah</div>
+          <div class="portrait-label-role">Product Design Leader</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating design component bottom-left -->
+    <div class="illus-el illus-bottom" style="bottom:80px;left:20px;z-index:12">
+      <svg width="120" height="60" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="120" height="60" rx="8" fill="rgba(8,8,8,0.85)" stroke="rgba(124,58,237,0.35)" stroke-width="1"/>
+        <text x="10" y="16" font-family="Inter,sans-serif" font-size="7" fill="rgba(240,238,232,0.4)" font-weight="600" letter-spacing="1">COMPONENT</text>
+        <rect x="10" y="22" width="60" height="14" rx="7" fill="rgba(124,58,237,0.5)"/>
+        <text x="18" y="32" font-family="Inter,sans-serif" font-size="7" fill="white" font-weight="600">Primary CTA</text>
+        <rect x="78" y="22" width="32" height="14" rx="7" fill="transparent" stroke="rgba(240,238,232,0.2)" stroke-width="1"/>
+        <text x="82" y="32" font-family="Inter,sans-serif" font-size="7" fill="rgba(240,238,232,0.4)" font-weight="500">Ghost</text>
+        <rect x="10" y="43" width="100" height="1" fill="rgba(240,238,232,0.06)"/>
+        <rect x="95" y="46" width="16" height="8" rx="4" fill="rgba(130,230,0,0.8)"/>
+        <circle cx="104" cy="50" r="3" fill="white"/>
+        <text x="10" y="52" font-family="Inter,sans-serif" font-size="6" fill="rgba(240,238,232,0.3)">Toggle</text>
+      </svg>
+    </div>
+
+    <!-- Cursor SVG floating -->
+    <div class="illus-el" style="bottom:50px;right:30px;z-index:12;animation-delay:1.5s">
+      <svg width="28" height="36" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 2L3 28L9 21L13 30L17 28L13 19L21 19Z" fill="rgba(159,110,255,0.9)" stroke="rgba(8,8,8,0.3)" stroke-width="0.75"/>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS -->
 <div class="stats-bar">
-  <div class="stat-box"><div class="stat-n">16<em>+</em></div><div class="stat-l">Years of design leadership</div></div>
-  <div class="stat-box"><div class="stat-n">50<em>%</em></div><div class="stat-l">Design &amp; dev effort saved via Design System</div></div>
-  <div class="stat-box"><div class="stat-n">15<em>%</em></div><div class="stat-l">User retention uplift — SLIR platform</div></div>
-  <div class="stat-box"><div class="stat-n">4K<em>+</em></div><div class="stat-l">Users served in Academic Ecosystem</div></div>
+  <div class="stat-box"><div class="stat-n">16<em>+</em></div><div class="stat-l">Years of design leadership across B2B SaaS, Automotive &amp; Telecom</div></div>
+  <div class="stat-box"><div class="stat-n">50<em>%</em></div><div class="stat-l">Design &amp; dev effort reduction via GISACC Design System</div></div>
+  <div class="stat-box"><div class="stat-n">15<em>%</em></div><div class="stat-l">User retention uplift on SLIR platform</div></div>
+  <div class="stat-box"><div class="stat-n">4K<em>+</em></div><div class="stat-l">Users served in the Academic Ecosystem at Zewail City</div></div>
 </div>
 
-<div class="worked">
-  <p class="worked-lbl">Worked with</p>
-  <div class="worked-row">
-    <div class="worked-co"><img src="https://logo.clearbit.com/valeo.com" alt="Valeo" style="height:36px;width:auto;max-width:120px;object-fit:contain;display:block" onerror="this.style.display='none'"><span>Valeo</span></div>
-    <div class="worked-co"><img src="https://logo.clearbit.com/vois.com" alt="_VOIS" style="height:36px;width:auto;max-width:120px;object-fit:contain;display:block" onerror="this.style.display='none'"><span>_VOIS</span></div>
-    <div class="worked-co"><img src="https://logo.clearbit.com/orange.com" alt="Orange" style="height:36px;width:auto;max-width:120px;object-fit:contain;display:block" onerror="this.style.display='none'"><span>Orange Labs</span></div>
-    <div class="worked-co"><img src="https://logo.clearbit.com/zewailcity.edu.eg" alt="Zewail City" style="height:36px;width:auto;max-width:120px;object-fit:contain;display:block" onerror="this.style.display='none'"><span>Zewail City</span></div>
-    <div class="worked-co"><img src="https://logo.clearbit.com/ecco-gulf.com" alt="ECCO Outsourcing" style="height:36px;width:auto;max-width:120px;object-fit:contain;display:block" onerror="this.style.display='none'"><span>ECCO Outsourcing</span></div>
-    <div class="worked-co"><img src="https://logo.clearbit.com/sistrum.com" alt="Sistrum Group" style="height:36px;width:auto;max-width:120px;object-fit:contain;display:block" onerror="this.style.display='none'"><span>Sistrum Group</span></div>
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><img src="https://logo.clearbit.com/valeo.com" onerror="this.style.display='none'" alt=""> Valeo <span class="marquee-sep">·</span></div>
+    <div class="marquee-item"><img src="https://logo.clearbit.com/vois.com" onerror="this.style.display='none'" alt=""> _VOIS <span class="marquee-sep">·</span></div>
+    <div class="marquee-item"><img src="https://logo.clearbit.com/orange.com" onerror="this.style.display='none'" alt=""> Orange Labs <span class="marquee-sep">·</span></div>
+    <div class="marquee-item"><img src="https://logo.clearbit.com/zewailcity.edu.eg" onerror="this.style.display='none'" alt=""> Zewail City <span class="marquee-sep">·</span></div>
+    <div class="marquee-item"><img src="https://logo.clearbit.com/ecco-gulf.com" onerror="this.style.display='none'" alt=""> ECCO Outsourcing <span class="marquee-sep">·</span></div>
+    <div class="marquee-item"><img src="https://logo.clearbit.com/sistrum.com" onerror="this.style.display='none'" alt=""> Sistrum Group <span class="marquee-sep">·</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="marquee-item"><img src="https://logo.clearbit.com/valeo.com" onerror="this.style.display='none'" alt=""> Valeo <span class="marquee-sep">·</span></div>
+    <div class="marquee-item"><img src="https://logo.clearbit.com/vois.com" onerror="this.style.display='none'" alt=""> _VOIS <span class="marquee-sep">·</span></div>
+    <div class="marquee-item"><img src="https://logo.clearbit.com/orange.com" onerror="this.style.display='none'" alt=""> Orange Labs <span class="marquee-sep">·</span></div>
+    <div class="marquee-item"><img src="https://logo.clearbit.com/zewailcity.edu.eg" onerror="this.style.display='none'" alt=""> Zewail City <span class="marquee-sep">·</span></div>
+    <div class="marquee-item"><img src="https://logo.clearbit.com/ecco-gulf.com" onerror="this.style.display='none'" alt=""> ECCO Outsourcing <span class="marquee-sep">·</span></div>
+    <div class="marquee-item"><img src="https://logo.clearbit.com/sistrum.com" onerror="this.style.display='none'" alt=""> Sistrum Group <span class="marquee-sep">·</span></div>
   </div>
 </div>
 
 <!-- ABOUT -->
-<div class="sec sec-soft" id="about">
-  <div class="sec-inner">
-    <div class="about-grid">
-      <div class="about-text">
-        <div class="sec-tag">About me</div>
-        <h2>I lead design teams.<br>I still lead the craft hands-on, every day.</h2>
-        <p>With 16+ years spanning <strong>B2B SaaS, Automotive, and Telecom</strong>, I sit at the intersection of design strategy and hands-on craft. I build design chapters, establish DesignOps processes, and set the technical direction for how a design team works — not just what they produce.</p>
-        <p>I pioneered <strong>Figma Make</strong> for AI-driven component generation and <strong>NotebookLM</strong> for research synthesis across my teams — driving organisation-wide adoption and noticeably compressing delivery cycles. I vibe code interactive stakeholder demos that compress weeks of back-and-forth into one session.</p>
-        <p>I operate with a <strong>design-to-cost mindset</strong>: every decision is weighed against engineering reality from day one, not at handoff. This is how you build systems developers love to implement.</p>
+<section class="about-section" id="about">
+  <div class="about-left">
+    <div>
+      <div class="section-label">About</div>
+      <h2 class="about-h2">I lead design teams.<br><em>I still lead the craft<br>hands-on, every day.</em></h2>
+    </div>
+    <!-- UX Process Illustration -->
+    <div class="ux-process">
+      <div class="ux-steps">
+        <div class="ux-step"><div class="ux-step-icon">🔍</div><div class="ux-step-label">Discover</div><div class="ux-step-sub">User research &amp; interviews</div></div>
+        <div class="ux-step"><div class="ux-step-icon">📐</div><div class="ux-step-label">Define</div><div class="ux-step-sub">IA &amp; HMW statements</div></div>
+        <div class="ux-step"><div class="ux-step-icon">✏️</div><div class="ux-step-label">Design</div><div class="ux-step-sub">Wireframes → hi-fi</div></div>
+        <div class="ux-step"><div class="ux-step-icon">🧪</div><div class="ux-step-label">Test</div><div class="ux-step-sub">Usability &amp; iteration</div></div>
+        <div class="ux-step"><div class="ux-step-icon">🚀</div><div class="ux-step-label">Ship</div><div class="ux-step-sub">Dev handoff &amp; QA</div></div>
       </div>
-      <div class="skill-panel">
-        <div><div class="sk-label">AI &amp; Modern Workflow</div><div class="sk-pills"><span class="sk-pill sk-pill-ai">Figma Make</span><span class="sk-pill sk-pill-ai">NotebookLM</span><span class="sk-pill sk-pill-ai">Vibe Coding</span><span class="sk-pill sk-pill-ai">AI-Assisted Design</span></div></div>
-        <div><div class="sk-label">Design Leadership</div><div class="sk-pills"><span class="sk-pill">DesignOps</span><span class="sk-pill">Design Systems</span><span class="sk-pill">Design Tokens</span><span class="sk-pill">Tri-track Agile</span><span class="sk-pill">Design-to-Cost</span><span class="sk-pill">Stakeholder Mgmt</span></div></div>
-        <div><div class="sk-label">UX Practice</div><div class="sk-pills"><span class="sk-pill">User Research</span><span class="sk-pill">Usability Testing</span><span class="sk-pill">Wireframing</span><span class="sk-pill">Info Architecture</span><span class="sk-pill">Accessibility (WCAG)</span><span class="sk-pill">User Flows</span></div></div>
-        <div><div class="sk-label">Tools</div><div class="sk-pills"><span class="sk-pill">Figma</span><span class="sk-pill">Miro</span><span class="sk-pill">Adobe CC</span><span class="sk-pill">HTML / CSS</span></div></div>
+    </div>
+    <div style="margin-top:2rem">
+      <div class="skill-group"><div class="skill-group-label">AI &amp; Modern Workflow</div><div class="skill-pills"><span class="skill-pill skill-pill-ai">Figma Make</span><span class="skill-pill skill-pill-ai">NotebookLM</span><span class="skill-pill skill-pill-ai">Vibe Coding</span><span class="skill-pill skill-pill-ai">AI-Assisted Design</span></div></div>
+      <div class="skill-group"><div class="skill-group-label">Design Leadership</div><div class="skill-pills"><span class="skill-pill">DesignOps</span><span class="skill-pill">Design Systems</span><span class="skill-pill">Design Tokens</span><span class="skill-pill">Tri-track Agile</span><span class="skill-pill">Design-to-Cost</span><span class="skill-pill">Stakeholder Mgmt</span><span class="skill-pill">Mentorship</span></div></div>
+      <div class="skill-group"><div class="skill-group-label">UX Practice</div><div class="skill-pills"><span class="skill-pill">User Research</span><span class="skill-pill">Usability Testing</span><span class="skill-pill">Heuristic Evaluation</span><span class="skill-pill">Info Architecture</span><span class="skill-pill">User Flows</span><span class="skill-pill">WCAG Accessibility</span><span class="skill-pill">Prototyping</span></div></div>
+      <div class="skill-group"><div class="skill-group-label">Tools</div><div class="skill-pills"><span class="skill-pill">Figma</span><span class="skill-pill">Miro</span><span class="skill-pill">Sketch</span><span class="skill-pill">Adobe CC</span><span class="skill-pill">HTML / CSS</span><span class="skill-pill">Confluence</span><span class="skill-pill">JIRA</span></div></div>
+    </div>
+  </div>
+  <div class="about-right">
+    <p class="about-p">With <strong>16+ years spanning B2B SaaS, Automotive, and Telecom</strong>, I sit at the intersection of design strategy and hands-on craft. I build design chapters, establish DesignOps processes, and set the technical direction for how a design team works — not just what they produce.</p>
+    <p class="about-p">I pioneered <strong>Figma Make</strong> for AI-driven component generation and <strong>NotebookLM</strong> for research synthesis across my teams — driving organisation-wide adoption and compressing delivery cycles noticeably. I vibe code interactive stakeholder demos that compress weeks of back-and-forth into a single session.</p>
+    <p class="about-p">I operate with a <strong>design-to-cost mindset</strong>: every decision is weighed against engineering reality from day one, not at handoff. This is how you build systems developers love to implement — and how I reduced design and development effort by <strong>50%</strong> at Valeo.</p>
+    <p class="about-p">I've led UX for <strong>enterprise HR platforms, IoT apps, governmental workflow systems, automotive R&amp;D tools, and academic ecosystems</strong> — each requiring different research approaches, design patterns, and stakeholder alignment strategies. That breadth is a deliberate asset.</p>
+
+    <!-- Inline UX illustration — design annotation style -->
+    <div style="margin-top:2.5rem;position:relative;border:1px solid var(--hairline);padding:1.5rem;overflow:hidden">
+      <div style="position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent-bright),transparent)"></div>
+      <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:1rem">CORE COMPETENCES · from resume</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem">
+        <div style="font-size:0.75rem;color:var(--fg-dim)"><span style="color:var(--fg);font-weight:600">Leadership</span><br>DesignOps · UX Strategy · Mentorship · Stakeholder Mgmt</div>
+        <div style="font-size:0.75rem;color:var(--fg-dim)"><span style="color:var(--fg);font-weight:600">UX Research</span><br>User Interviews · Usability Testing · Heuristic Evaluation · IA</div>
+        <div style="font-size:0.75rem;color:var(--fg-dim)"><span style="color:var(--fg);font-weight:600">Product Design</span><br>UX/UI Design · Interaction Design · Prototyping · Design Systems</div>
+        <div style="font-size:0.75rem;color:var(--fg-dim)"><span style="color:var(--fg);font-weight:600">Technical</span><br>Design Tokens · Figma · AI-Assisted Design · Agile/Scrum · HTML/CSS</div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- PROJECTS — ordered most recent first -->
-<div class="sec" id="work">
-  <div class="sec-inner">
-    <div class="proj-header">
-      <div><div class="sec-tag">Selected work</div><h2>Case studies &amp; projects</h2></div>
-      <a href="https://www.behance.net/SarahAbouzainah" target="_blank" class="btn-ghost" style="white-space:nowrap;font-size:0.82rem">All projects on Behance ↗</a>
-    </div>
-    <div class="bento">
-
-      <!-- 2021 — Valeo Appraisal (internal CS) -->
-      <div role="button" tabindex="0" onclick="showCaseStudy('appraisal')" onkeydown="if(event.key==='Enter')showCaseStudy('appraisal')" class="bcard bc-w4">
-        <div class="bthumb th-g">
-          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/7286ee114938089.6045110c1d991.png" alt="" onerror="this.remove()">
-        </div>
-        <div class="bc-body">
-          <div class="bc-tags"><span class="bc-tag t-g">Enterprise</span><span class="bc-tag t-v">B2B</span></div>
-          <div class="bc-title">UX/UI — Valeo Appraisal Process</div>
-          <div class="bc-desc">Redesigned the full digital appraisal flow for three user roles — HR, leader, and manager — each with tailored navigation and data views.</div>
-          <div class="bc-ft"><span class="bc-year">2021 · Enterprise · Case Study</span><span class="bc-arrow">View ↗</span></div>
-        </div>
-      </div>
-
-      <!-- 2019 — 10K Elevator (internal CS) -->
-      <div role="button" tabindex="0" onclick="showCaseStudy('elevator')" onkeydown="if(event.key==='Enter')showCaseStudy('elevator')" class="bcard bc-w2">
-        <div class="bthumb th-v">
-          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/97389353.jpg" alt="" onerror="this.remove()">
-        </div>
-        <div class="bc-body">
-          <div class="bc-tags"><span class="bc-tag t-v">Research</span><span class="bc-tag t-b">Speculative</span></div>
-          <div class="bc-title">10,000-Floor Elevator Research</div>
-          <div class="bc-desc">Speculative UX research — alternative control interfaces for extreme scale.</div>
-          <div class="bc-ft"><span class="bc-year">2019 · Research · Case Study</span><span class="bc-arrow">View ↗</span></div>
-        </div>
-      </div>
-
-      <!-- 2019 — Bus Tracker -->
-      <a href="https://www.behance.net/gallery/112026169/UX-Case-Study-Bus-Tracker-Mobile-App" target="_blank" class="bcard bc-w3">
-        <div class="bthumb th-b">
-          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/112026169.jpg" alt="" onerror="this.remove()">
-        </div>
-        <div class="bc-body">
-          <div class="bc-tags"><span class="bc-tag t-b">UX Research</span><span class="bc-tag t-v">Mobile</span></div>
-          <div class="bc-title">UX Case Study — Bus Tracker Mobile App</div>
-          <div class="bc-desc">End-to-end UX case study for a real-time public transit tracking app — reducing commute anxiety through predictive, clear information design.</div>
-          <div class="bc-ft"><span class="bc-year">2019 · Mobile · UX Research</span><span class="bc-arrow">View ↗</span></div>
-        </div>
-      </a>
-
-      <!-- 2019 — Monitoring Tool -->
-      <a href="https://www.behance.net/gallery/96320335/UX-Design-for-Monitoring-Tool-App" target="_blank" class="bcard bc-w3">
-        <div class="bthumb th-a">
-          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/96320335.jpg" alt="" onerror="this.remove()">
-        </div>
-        <div class="bc-body">
-          <div class="bc-tags"><span class="bc-tag t-a">Enterprise</span><span class="bc-tag t-g">Technical UX</span></div>
-          <div class="bc-title">UX Design — Monitoring Tool App</div>
-          <div class="bc-desc">High-density technical monitoring UI for engineering users — balancing data richness with fast decision-making under pressure.</div>
-          <div class="bc-ft"><span class="bc-year">2019 · Technical · Monitoring</span><span class="bc-arrow">View ↗</span></div>
-        </div>
-      </a>
-
-      <!-- 2018 — Expense Tracker -->
-      <a href="https://www.behance.net/gallery/93151109/UX-Case-Study-for-Expense-Tracker" target="_blank" class="bcard bc-w2">
-        <div class="bthumb th-s" style="aspect-ratio:4/3">
-          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/93151109.jpg" alt="" onerror="this.remove()">
-        </div>
-        <div class="bc-body">
-          <div class="bc-tags"><span class="bc-tag t-g">FinTech</span></div>
-          <div class="bc-title">Expense Tracker</div>
-          <div class="bc-desc">Behavioral research driving habit-forming personal finance UX design.</div>
-          <div class="bc-ft"><span class="bc-year">2018</span><span class="bc-arrow">View ↗</span></div>
-        </div>
-      </a>
-
-      <!-- 2016 — Zewail City -->
-      <a href="https://www.behance.net/gallery/53697885/Interface-Design-for-Zewail-City-Website" target="_blank" class="bcard bc-w2">
-        <div class="bthumb th-r" style="aspect-ratio:4/3">
-          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/53697885.jpg" alt="" onerror="this.remove()">
-        </div>
-        <div class="bc-body">
-          <div class="bc-tags"><span class="bc-tag t-b">Web</span></div>
-          <div class="bc-title">Zewail City Website</div>
-          <div class="bc-desc">Institutional web design serving 4,000+ students annually.</div>
-          <div class="bc-ft"><span class="bc-year">2016</span><span class="bc-arrow">View ↗</span></div>
-        </div>
-      </a>
-
-      <!-- 2016 — Murals -->
-      <a href="https://www.behance.net/gallery/57606125/Classrooms-Wall-Murals" target="_blank" class="bcard bc-w2">
-        <div class="bthumb th-a" style="aspect-ratio:4/3">
-          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/57606125.jpg" alt="" onerror="this.remove()">
-        </div>
-        <div class="bc-body">
-          <div class="bc-tags"><span class="bc-tag t-a">Environmental</span></div>
-          <div class="bc-title">Classrooms Wall Murals</div>
-          <div class="bc-desc">Art direction for 26 university classrooms at Zewail City.</div>
-          <div class="bc-ft"><span class="bc-year">2016</span><span class="bc-arrow">View ↗</span></div>
-        </div>
-      </a>
-
-      <!-- 2015 — Admission Exam -->
-      <a href="https://www.behance.net/gallery/93395403/UX-Case-Study-for-Admission-Exam-App" target="_blank" class="bcard bc-w2">
-        <div class="bthumb th-b" style="aspect-ratio:4/3">
-          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/93395403.jpg" alt="" onerror="this.remove()">
-        </div>
-        <div class="bc-body">
-          <div class="bc-tags"><span class="bc-tag t-b">EdTech</span></div>
-          <div class="bc-title">Admission Exam App</div>
-          <div class="bc-desc">Reducing test-taker anxiety in a high-stakes digital exam interface.</div>
-          <div class="bc-ft"><span class="bc-year">2015</span><span class="bc-arrow">View ↗</span></div>
-        </div>
-      </a>
-
-    </div>
+<!-- PROJECTS -->
+<section id="work">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:2.5rem 2.5rem 1.5rem">
+    <div class="section-label" style="margin-bottom:0">Selected work</div>
+    <a href="https://www.behance.net/SarahAbouzainah" target="_blank" class="btn-ghost" style="font-size:0.68rem">All on Behance ↗</a>
   </div>
-</div>
+  <ul class="project-list projects-section">
+    <li class="project-item" onclick="showCaseStudy('appraisal')">
+      <div class="proj-preview proj-preview-g"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/7286ee114938089.6045110c1d991.png" alt="" onerror="this.closest('.proj-preview').style.display='none'"></div>
+      <span class="proj-num">01</span>
+      <div class="proj-info"><span class="proj-title">UX/UI — Valeo Appraisal Process</span><div class="proj-tags"><span class="proj-tag proj-tag-accent">Case Study</span><span class="proj-tag">Enterprise HR</span><span class="proj-tag">Role-Based Flows</span><span class="proj-tag">B2B</span></div></div>
+      <span class="proj-year">2021</span><span class="proj-arrow">↗</span>
+    </li>
+    <li class="project-item" onclick="showCaseStudy('elevator')">
+      <div class="proj-preview proj-preview-v"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/97389353.jpg" alt="" onerror="this.closest('.proj-preview').style.display='none'"></div>
+      <span class="proj-num">02</span>
+      <div class="proj-info"><span class="proj-title">10,000-Floor Elevator Research</span><div class="proj-tags"><span class="proj-tag proj-tag-accent">Case Study</span><span class="proj-tag">Speculative UX</span><span class="proj-tag">Cognitive Load</span></div></div>
+      <span class="proj-year">2019</span><span class="proj-arrow">↗</span>
+    </li>
+    <li class="project-item"><a href="https://www.behance.net/gallery/112026169/UX-Case-Study-Bus-Tracker-Mobile-App" target="_blank" style="display:contents">
+      <div class="proj-preview proj-preview-b"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/112026169.jpg" alt="" onerror="this.closest('.proj-preview').style.display='none'"></div>
+      <span class="proj-num">03</span>
+      <div class="proj-info"><span class="proj-title">Bus Tracker Mobile App</span><div class="proj-tags"><span class="proj-tag">UX Research</span><span class="proj-tag">Mobile</span><span class="proj-tag">End-to-End</span></div></div>
+      <span class="proj-year">2019</span><span class="proj-arrow">↗</span>
+    </a></li>
+    <li class="project-item"><a href="https://www.behance.net/gallery/96320335/UX-Design-for-Monitoring-Tool-App" target="_blank" style="display:contents">
+      <div class="proj-preview proj-preview-a"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/96320335.jpg" alt="" onerror="this.closest('.proj-preview').style.display='none'"></div>
+      <span class="proj-num">04</span>
+      <div class="proj-info"><span class="proj-title">UX Design — Monitoring Tool App</span><div class="proj-tags"><span class="proj-tag">Enterprise</span><span class="proj-tag">Technical UX</span><span class="proj-tag">Data-Dense UI</span></div></div>
+      <span class="proj-year">2019</span><span class="proj-arrow">↗</span>
+    </a></li>
+    <li class="project-item"><a href="https://www.behance.net/gallery/93151109/UX-Case-Study-for-Expense-Tracker" target="_blank" style="display:contents">
+      <div class="proj-preview proj-preview-s"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/93151109.jpg" alt="" onerror="this.closest('.proj-preview').style.display='none'"></div>
+      <span class="proj-num">05</span>
+      <div class="proj-info"><span class="proj-title">Expense Tracker — Behavioral Finance UX</span><div class="proj-tags"><span class="proj-tag">FinTech</span><span class="proj-tag">Behavioral Research</span></div></div>
+      <span class="proj-year">2018</span><span class="proj-arrow">↗</span>
+    </a></li>
+    <li class="project-item"><a href="https://www.behance.net/gallery/53697885/Interface-Design-for-Zewail-City-Website" target="_blank" style="display:contents">
+      <div class="proj-preview proj-preview-r"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/53697885.jpg" alt="" onerror="this.closest('.proj-preview').style.display='none'"></div>
+      <span class="proj-num">06</span>
+      <div class="proj-info"><span class="proj-title">Zewail City Website</span><div class="proj-tags"><span class="proj-tag">Web Design</span><span class="proj-tag">EdTech</span><span class="proj-tag">4,000+ Users</span></div></div>
+      <span class="proj-year">2016</span><span class="proj-arrow">↗</span>
+    </a></li>
+    <li class="project-item"><a href="https://www.behance.net/gallery/57606125/Classrooms-Wall-Murals" target="_blank" style="display:contents">
+      <div class="proj-preview proj-preview-a"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/57606125.jpg" alt="" onerror="this.closest('.proj-preview').style.display='none'"></div>
+      <span class="proj-num">07</span>
+      <div class="proj-info"><span class="proj-title">Classrooms Wall Murals · Zewail City</span><div class="proj-tags"><span class="proj-tag">Environmental Design</span><span class="proj-tag">26 Classrooms</span></div></div>
+      <span class="proj-year">2016</span><span class="proj-arrow">↗</span>
+    </a></li>
+    <li class="project-item"><a href="https://www.behance.net/gallery/93395403/UX-Case-Study-for-Admission-Exam-App" target="_blank" style="display:contents">
+      <div class="proj-preview proj-preview-b"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/93395403.jpg" alt="" onerror="this.closest('.proj-preview').style.display='none'"></div>
+      <span class="proj-num">08</span>
+      <div class="proj-info"><span class="proj-title">Admission Exam App · Zewail City</span><div class="proj-tags"><span class="proj-tag">EdTech</span><span class="proj-tag">High-Stakes UX</span></div></div>
+      <span class="proj-year">2015</span><span class="proj-arrow">↗</span>
+    </a></li>
+  </ul>
+</section>
 
 <!-- NDA / ENTERPRISE -->
-<div class="sec sec-dark">
-  <div class="sec-inner">
-    <div class="sec-tag" style="color:var(--violet-mid)">Enterprise work</div>
-    <h2>Confidential projects</h2>
-    <p class="sec-sub" style="color:rgba(255,255,255,0.4)">Recent B2B SaaS work at Valeo is under NDA. Detailed case studies available upon request.</p>
-    <div class="nda-grid">
-      <div class="nda-card"><div class="nda-n">01</div><div class="nda-badge">🔒 NDA · Design System</div><div class="nda-title">GISACC Design System</div><div class="nda-desc">Built and scaled Valeo's enterprise design system end-to-end — component architecture, design tokens, semantic theming, and accessibility standards. Reduced design and development effort by 50% across all product lines.</div><div class="nda-foot">Valeo · 2021–Present</div></div>
-      <div class="nda-card"><div class="nda-n">02</div><div class="nda-badge">🔒 NDA · Risk Management SaaS</div><div class="nda-title">Issues &amp; Risks Monitoring Platform</div><div class="nda-desc">Transformed Valeo's spreadsheet-based risk tracking into a structured B2B SaaS product. Outcome: 15% uplift in user retention and significantly reduced reporting overhead.</div><div class="nda-foot">Valeo · 2022</div></div>
-      <div class="nda-card"><div class="nda-n">03</div><div class="nda-badge">🔒 NDA · Project Management SaaS</div><div class="nda-title">STR Project Management App</div><div class="nda-desc">Full product strategy, design model, and UI for a cross-functional PM platform supporting 6 distinct user personas with role-adaptive navigation and granular access control.</div><div class="nda-foot">Valeo · 2023</div></div>
-      <div class="nda-card"><div class="nda-n">04</div><div class="nda-badge">🔒 NDA · Process Management</div><div class="nda-title">SIPH — Process &amp; Templates Platform</div><div class="nda-desc">Designed the end-to-end UX for SIPH, an internal process management hub. Engineers access standardised process templates and manage the inputs and outputs that flow between each phase of the product development lifecycle — reducing ambiguity and enforcing consistency across global R&amp;D teams.</div><div class="nda-foot">Valeo · 2024</div></div>
-      <div class="nda-card"><div class="nda-n">05</div><div class="nda-badge">🔒 NDA · Workforce Management SaaS</div><div class="nda-title">Workforce Capacity Manager</div><div class="nda-desc">A real-time capacity management tool for engineering managers — delivering team visibility, smarter project allocation, faster request assessment, and proactive hiring decisions. Outcome: 4× faster request assessment, 100% task completion in usability testing, and forecast visibility 2 quarters ahead.</div><div class="nda-foot">Valeo · 2026</div></div>
-    </div>
+<section class="nda-section">
+  <div class="nda-header">
+    <div class="section-label">Enterprise work · NDA</div>
+    <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.03em;color:var(--fg);margin-bottom:0.5rem">Confidential projects</h2>
+    <p style="font-size:0.82rem;color:var(--fg-muted)">Recent B2B SaaS work at Valeo is under NDA. Detailed case studies available upon request.</p>
   </div>
-</div>
+  <div class="nda-grid">
+    <div class="nda-card"><div class="nda-num">01</div><div class="nda-badge">🔒 Design System</div><div class="nda-title">GISACC Design System</div><div class="nda-desc">Built and scaled Valeo's enterprise design system end-to-end — component architecture, design tokens, semantic theming, and accessibility standards. Reduced design and development effort by 50%. Led the Figma migration from Adobe XD across management and cybersecurity approvals.</div><div class="nda-foot">Valeo · 2021–Present</div></div>
+    <div class="nda-card"><div class="nda-num">02</div><div class="nda-badge">🔒 Risk Management SaaS</div><div class="nda-title">Issues &amp; Risks Monitoring Platform</div><div class="nda-desc">Transformed legacy spreadsheet-based risk tracking into a structured B2B SaaS product. Defined IA, persona-based views, and real-time data visualisation for global R&amp;D teams. Outcome: 15% uplift in user retention and significantly reduced reporting overhead.</div><div class="nda-foot">Valeo · 2022</div></div>
+    <div class="nda-card"><div class="nda-num">03</div><div class="nda-badge">🔒 Project Management SaaS</div><div class="nda-title">STR Project Management App</div><div class="nda-desc">Defined the full business model, design strategy, and UI for a cross-functional PM platform supporting 6 distinct user personas. Persona-Based UI with role-adaptive navigation and granular access control — deployed internationally with measurably low onboarding friction.</div><div class="nda-foot">Valeo · 2023</div></div>
+    <div class="nda-card"><div class="nda-num">04</div><div class="nda-badge">🔒 Process Management</div><div class="nda-title">SIPH — Process &amp; Templates Platform</div><div class="nda-desc">Internal process management hub where engineers access standardised templates and manage inputs/outputs that flow between each phase of the product development lifecycle — reducing ambiguity and enforcing consistency across global R&amp;D teams.</div><div class="nda-foot">Valeo · 2024</div></div>
+    <div class="nda-card"><div class="nda-num">05</div><div class="nda-badge">🔒 Workforce Management SaaS</div><div class="nda-title">Workforce Capacity Manager</div><div class="nda-desc">Real-time capacity management tool for engineering managers — team visibility, smarter project allocation, faster request assessment, and proactive hiring decisions. Outcome: 4× faster request assessment, 100% task completion rate in usability testing, forecast visibility 2 quarters ahead.</div><div class="nda-foot">Valeo · 2026</div></div>
+  </div>
+</section>
 
 <!-- EXPERIENCE -->
-<div class="sec" id="experience">
-  <div class="sec-inner">
-    <div class="sec-tag">Career</div>
-    <h2>Work experience</h2>
-    <div class="exp-grid">
-      <div class="exp-card"><div class="exp-period">Aug 2021 — Present</div><div class="exp-role">Chief UX/UI Designer &amp; UX Chapter Lead</div><div class="exp-company">Valeo — Automotive R&amp;D, Global</div><div class="exp-desc">Leading enterprise B2B SaaS design for global cross-functional teams. Built GISACC Design System (−50% effort), redesigned SLIR platform (+15% retention), pioneered AI-assisted workflows including Figma Make and NotebookLM. Co-architected Tri-track Agile with product and engineering leadership.</div></div>
-      <div class="exp-card"><div class="exp-period">May 2021 — Jul 2021</div><div class="exp-role">IoT Design Lead</div><div class="exp-company">_VOIS (Vodafone Intelligent Solutions)</div><div class="exp-desc">Sole designer with full ownership of the Vodafone Connected Living app — an IoT smart home platform serving Vodafone's diverse global customer base. Crafted an intuitive device management UI that improved app engagement and retention metrics. Partnered with Deloitte's design team to execute a seamless design handover, eliminating friction and keeping delivery on schedule.</div></div>
-      <div class="exp-card"><div class="exp-period">Nov 2017 — Apr 2021</div><div class="exp-role">Senior UX Designer</div><div class="exp-company">Orange Labs / Innovation Egypt</div><div class="exp-desc">Led end-to-end UX for B2B and public sector projects: Governmental Workflow System, IoT Smart Meter App, Orange Morocco CPE Automation, and ONAP CDS Designer App. Recognized as Top Employee for 6 consecutive months among 60+ staff.</div></div>
-      <div class="exp-card"><div class="exp-period">Jul 2013 — Nov 2017</div><div class="exp-role">Senior UX / Learning Experience Designer</div><div class="exp-company">Zewail City of Science and Technology</div><div class="exp-desc">Designed integrated Academic Ecosystem for 4,000+ students and 30+ faculty. Modernised LMS interface. Facilitated 30+ usability testing sessions. Art directed mural design across 26 classrooms.</div></div>
-      <div class="exp-card"><div class="exp-period">Dec 2012 — Jul 2013</div><div class="exp-role">Senior Web Designer</div><div class="exp-company">ECCO Outsourcing</div><div class="exp-desc">Designed high-efficiency UX/UI for B2B call centre web applications, optimizing agent workflows and data density for enterprise clients. Developed responsive websites and digital interfaces, ensuring accessibility compliance and brand consistency across retail and service projects.</div></div>
-      <div class="exp-card"><div class="exp-period">Jan 2010 — Nov 2012</div><div class="exp-role">Web &amp; Graphic Designer → Senior Designer</div><div class="exp-company">Sistrum Group</div><div class="exp-desc">Started as web designer and progressed to senior designer. Executed end-to-end UI design and wireframing for online retail products, including e-commerce platforms and interactive web applications. Managed multiple roles across all project lifecycle phases: concept, design, UI production, and UI testing.</div></div>
+<section class="exp-section" id="experience">
+  <div class="exp-header" style="padding-bottom:1.5rem"><div class="section-label">Career</div></div>
+  <ul class="exp-list">
+    <li class="exp-item">
+      <div class="exp-left"><div class="exp-period">Aug 2021 — Present</div><div class="exp-company">Valeo</div></div>
+      <div class="exp-right">
+        <div class="exp-role">Chief UX/UI Designer &amp; UX Chapter Lead</div>
+        <div class="exp-desc">Leading enterprise B2B SaaS design for global cross-functional teams across Automotive R&amp;D. Built the GISACC Design System (−50% effort), redesigned the SLIR risk platform (+15% retention), pioneered AI-assisted workflows with Figma Make and NotebookLM gaining team-wide adoption. Co-architected Tri-track Agile with product and engineering leadership. Championed Miro as Enterprise Advocate. Led global migration from Adobe XD to Figma.</div>
+      </div>
+    </li>
+    <li class="exp-item">
+      <div class="exp-left"><div class="exp-period">May 2021 — Jul 2021</div><div class="exp-company">_VOIS</div></div>
+      <div class="exp-right">
+        <div class="exp-role">IoT Design Lead</div>
+        <div class="exp-desc">Sole designer with full ownership of the Vodafone Connected Living app — an IoT smart home platform serving Vodafone's diverse global customer base. Crafted an intuitive device management UI that improved app engagement and retention metrics. Partnered with Deloitte's design team to execute a seamless design handover, eliminating friction and keeping delivery on schedule.</div>
+      </div>
+    </li>
+    <li class="exp-item">
+      <div class="exp-left"><div class="exp-period">Nov 2017 — Apr 2021</div><div class="exp-company">Orange Labs</div></div>
+      <div class="exp-right">
+        <div class="exp-role">Senior UX Designer</div>
+        <div class="exp-desc">Directed end-to-end UX for high-impact regional projects: Governmental Workflow Management System (Public Sector), Smart Meter App (IoT), Orange Morocco CPE Automation (Telecom Infrastructure), and ONAP CDS Designer App (Open Source). Developed deep understanding via user research, competitive analysis, and design thinking. Awarded Top Employee among 60+ staff for 6 consecutive months.</div>
+      </div>
+    </li>
+    <li class="exp-item">
+      <div class="exp-left"><div class="exp-period">Jul 2013 — Nov 2017</div><div class="exp-company">Zewail City</div></div>
+      <div class="exp-right">
+        <div class="exp-role">Senior UX / Learning Experience Designer</div>
+        <div class="exp-desc">Designed the web-based Admission &amp; Academic Ecosystem serving 4,000+ students and 30+ faculty annually. Modernised the LMS interface significantly improving the university community's digital experience. Facilitated 30+ usability testing sessions. Art directed Mural Design across 26 university classrooms. Mentored UX interns and established a talent pipeline and onboarding curriculum.</div>
+      </div>
+    </li>
+    <li class="exp-item">
+      <div class="exp-left"><div class="exp-period">Dec 2012 — Jul 2013</div><div class="exp-company">ECCO Outsourcing</div></div>
+      <div class="exp-right">
+        <div class="exp-role">Senior Web Designer</div>
+        <div class="exp-desc">Designed high-efficiency UX/UI for B2B call centre web applications, optimizing agent workflows and data density for enterprise clients. Developed responsive websites and digital interfaces ensuring accessibility compliance and brand consistency.</div>
+      </div>
+    </li>
+    <li class="exp-item">
+      <div class="exp-left"><div class="exp-period">Jan 2010 — Nov 2012</div><div class="exp-company">Sistrum Group</div></div>
+      <div class="exp-right">
+        <div class="exp-role">Web &amp; Graphic Designer → Senior Designer</div>
+        <div class="exp-desc">Progressed from junior to senior designer. Executed end-to-end UI design for e-commerce platforms and interactive web applications, managing all project phases: concepts, design, UI production, and testing.</div>
+      </div>
+    </li>
+  </ul>
+  <!-- Education -->
+  <div style="padding:2.5rem;border-top:1px solid var(--hairline)">
+    <div class="section-label" style="margin-bottom:1.5rem">Education &amp; Certifications</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hairline)">
+      <div style="background:var(--bg-2);padding:1.5rem"><div style="font-size:0.72rem;color:var(--accent-bright);margin-bottom:0.25rem">2022</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:0.95rem;font-weight:700;color:var(--fg);margin-bottom:0.2rem">Professional Certificate — Human-Computer Interaction</div><div style="font-size:0.75rem;color:var(--fg-muted)">Georgia Institute of Technology</div></div>
+      <div style="background:var(--bg-2);padding:1.5rem"><div style="font-size:0.72rem;color:var(--accent-bright);margin-bottom:0.25rem">2019</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:0.95rem;font-weight:700;color:var(--fg);margin-bottom:0.2rem">MicroMasters — UX Research and Design</div><div style="font-size:0.75rem;color:var(--fg-muted)">University of Michigan</div></div>
+      <div style="background:var(--bg-2);padding:1.5rem"><div style="font-size:0.72rem;color:var(--accent-bright);margin-bottom:0.25rem">2008</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:0.95rem;font-weight:700;color:var(--fg);margin-bottom:0.2rem">E-commerce &amp; Web Design &amp; Development Diploma</div><div style="font-size:0.75rem;color:var(--fg-muted)">MCIT 9-Month Scholarship</div></div>
+      <div style="background:var(--bg-2);padding:1.5rem"><div style="font-size:0.72rem;color:var(--accent-bright);margin-bottom:0.25rem">2007</div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:0.95rem;font-weight:700;color:var(--fg);margin-bottom:0.2rem">Bachelor's in Commerce (Accounting)</div><div style="font-size:0.75rem;color:var(--fg-muted)">Al-Azhar University</div></div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- CONTACT -->
-<div class="sec sec-dark" id="contact">
-  <div class="sec-inner">
-    <div class="contact-inner">
-      <div class="sec-tag" style="color:var(--violet-mid);justify-content:center">Let's talk</div>
-      <h2 style="margin-bottom:0.75rem">Building something that<br>needs a design leader?</h2>
-      <p class="sec-sub" style="margin:0 auto 2.5rem">Open to design leadership roles in B2B SaaS and tech where AI-native thinking is the expectation, not the exception.</p>
-      <div class="contact-cards">
-        <a href="mailto:sarah.abouzaina@gmail.com" class="contact-card"><div class="cc-label">Email</div><div class="cc-val">sarah.abouzaina@gmail.com</div></a>
-        <a href="https://www.linkedin.com/in/sarah-abouzainah/" target="_blank" class="contact-card"><div class="cc-label">LinkedIn</div><div class="cc-val">sarah-abouzainah ↗</div></a>
-        <a href="https://www.behance.net/SarahAbouzainah" target="_blank" class="contact-card"><div class="cc-label">Portfolio</div><div class="cc-val">Behance ↗</div></a>
-      </div>
-      <p class="contact-note">Based in Giza, Egypt · Available for remote and hybrid roles globally · Open to travel · Not open to relocation</p>
-    </div>
+<section class="contact-section" id="contact">
+  <div class="section-label">Let's talk</div>
+  <h2 class="contact-h2">Got a design<br><em>leadership</em><br>opportunity?</h2>
+  <div class="contact-cards">
+    <a href="mailto:sarah.abouzaina@gmail.com" class="contact-card"><div class="cc-label">Email</div><div class="cc-val">sarah.abouzaina@gmail.com</div></a>
+    <a href="https://www.linkedin.com/in/sarah-abouzainah/" target="_blank" class="contact-card"><div class="cc-label">LinkedIn</div><div class="cc-val">sarah-abouzainah ↗</div></a>
+    <a href="https://www.behance.net/SarahAbouzainah" target="_blank" class="contact-card"><div class="cc-label">Behance</div><div class="cc-val">SarahAbouzainah ↗</div></a>
   </div>
-</div>
+  <p class="contact-note">Giza, Egypt · Available for remote &amp; hybrid roles globally · Open to international travel</p>
+</section>
 
 <footer>
   <p>© 2026 Sarah Abouzainah · Product Design Leader</p>
@@ -540,404 +880,139 @@ footer p{font-size:0.75rem;color:rgba(255,255,255,0.2)}
 ══════════════════════════════════ -->
 <div id="cs">
 
-<!-- ── PAGE 1: VALEO APPRAISAL ── -->
+<!-- PAGE 1: VALEO APPRAISAL -->
 <div id="page-appraisal" class="page active">
   <div class="cs-hero hero-appraisal">
     <div class="project-label green">● Valeo · UX/UI Case Study · 2021</div>
-    <h1>Appraisal<br><em style="color:#82E600;">Process</em></h1>
-    <p class="hero-sub-cs">Redesigning Valeo's annual employee appraisal system — creating distinct, intuitive flows for HR teams, leaders, and managers, replacing a fragmented paper-and-email process with a single digital platform.</p>
-    <div class="hero-tags">
-      <span class="hero-tag accent-green">Enterprise HR</span><span class="hero-tag accent-green">Process Design</span><span class="hero-tag">UX Research</span><span class="hero-tag">UI Design</span><span class="hero-tag">Role-Based Flows</span><span class="hero-tag">Sketch · Miro</span>
-    </div>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><label>Designer</label><span>Sarah Abouzainah</span></div>
-      <div class="hero-meta-item"><label>Company</label><span>Valeo Egypt</span></div>
-      <div class="hero-meta-item"><label>Tools</label><span>Sketch · Miro</span></div>
-      <div class="hero-meta-item"><label>Published</label><span>2021</span></div>
-      <div class="hero-meta-item"><label>Domain</label><span>HR Tech · Performance Mgmt</span></div>
-    </div>
+    <h1>Appraisal<br><em>Process</em></h1>
+    <p class="hero-sub-cs">Redesigning Valeo's annual employee appraisal system — distinct, intuitive flows for HR, leaders, and managers, replacing a fragmented paper-and-email process with a single digital platform.</p>
+    <div class="hero-tags"><span class="hero-tag accent-green">Enterprise HR</span><span class="hero-tag accent-green">Process Design</span><span class="hero-tag">UX Research</span><span class="hero-tag">UI Design</span><span class="hero-tag">Role-Based Flows</span><span class="hero-tag">Sketch · Miro</span></div>
+    <div class="hero-meta"><div class="hero-meta-item"><label>Designer</label><span>Sarah Abouzainah</span></div><div class="hero-meta-item"><label>Company</label><span>Valeo Egypt</span></div><div class="hero-meta-item"><label>Tools</label><span>Sketch · Miro</span></div><div class="hero-meta-item"><label>Year</label><span>2021</span></div><div class="hero-meta-item"><label>Domain</label><span>HR Tech · Performance Mgmt</span></div></div>
   </div>
-
-  <section class="section">
-    <div class="section-label">01 — Problem Space</div>
-    <h2 class="section-title">A broken appraisal cycle</h2>
-    <p class="section-body">Valeo's annual performance appraisal ran across paper forms, shared spreadsheets, and email threads. Three distinct user groups — HR, leaders, and managers — had no unified digital workflow, leading to missed deadlines, inconsistent evaluations, and poor visibility into cycle progress.</p>
-    <div class="three-col">
-      <div class="cs-card green-left"><h4>🗂️ No single platform</h4><p>HR teams coordinated cycles across Excel exports and email. There was no live view of who had completed their self-assessment or who was waiting on a manager review.</p></div>
-      <div class="cs-card green-left"><h4>🔄 Three roles, three broken flows</h4><p>HR, leaders, and managers each had different needs during the appraisal cycle — yet they all used the same generic forms, causing confusion and rework at every stage.</p></div>
-      <div class="cs-card green-left"><h4>📉 Low completion rates</h4><p>Without reminders, status tracking, or a clear digital home for the process, appraisal cycles regularly ran weeks over schedule with incomplete submissions.</p></div>
-    </div>
-    <div class="hmw hmw-green"><label>How Might We</label><h3>"How might we design a digital appraisal system that gives each role — HR, leader, and manager — a clear, tailored workflow while keeping the entire cycle visible and on track?"</h3></div>
+  <section class="section"><div class="cs-section-label">01 — Problem Space</div><h2 class="section-title">A broken appraisal cycle</h2><p class="section-body">Valeo's annual performance appraisal ran across paper forms, shared spreadsheets, and email threads. Three distinct user groups — HR, leaders, and managers — had no unified digital workflow, leading to missed deadlines, inconsistent evaluations, and poor visibility into cycle progress.</p><div class="three-col"><div class="cs-card green-left"><h4>🗂️ No single platform</h4><p>HR teams coordinated cycles across Excel exports and email with no live view of submission status or review progress.</p></div><div class="cs-card green-left"><h4>🔄 Three roles, three broken flows</h4><p>HR, leaders, and managers each had different needs yet used the same generic forms, causing confusion and rework at every stage.</p></div><div class="cs-card green-left"><h4>📉 Low completion rates</h4><p>Without reminders, status tracking, or a clear digital home, appraisal cycles regularly ran weeks over schedule.</p></div></div><div class="hmw"><label>How Might We</label><h3>"How might we design a digital appraisal system that gives each role a clear, tailored workflow while keeping the entire cycle visible and on track?"</h3></div></section>
+  <section class="section alt"><div class="cs-section-label">02 — Research</div><h2 class="section-title">Understanding each role's journey</h2><p class="section-body">We interviewed 12 participants across the three roles and mapped their current process end-to-end to identify where breakdowns occurred most frequently.</p><div class="stat-row"><div class="stat-box"><span class="stat-num green">12</span><span class="stat-lbl">Role-based interviews</span></div><div class="stat-box"><span class="stat-num green">3</span><span class="stat-lbl">Distinct user roles mapped</span></div><div class="stat-box"><span class="stat-num green">67%</span><span class="stat-lbl">Said deadline tracking was top pain</span></div><div class="stat-box"><span class="stat-num green">5×</span><span class="stat-lbl">Avg. email exchanges per review cycle</span></div></div><div class="three-col" style="margin-top:2.5rem"><div class="insight"><div class="insight-icon green">👥</div><h4>Role clarity is essential</h4><p>Each role had entirely different tasks. A single interface caused confusion about who should act next.</p></div><div class="insight"><div class="insight-icon green">📋</div><h4>Status visibility drives completion</h4><p>HR couldn't see who was blocking progress. Clear status indicators could cut follow-up emails by 80%+.</p></div><div class="insight"><div class="insight-icon green">⏰</div><h4>Deadlines need surfacing</h4><p>Users only discovered they were late when HR chased them. In-product visibility was critical.</p></div></div></section>
+  <section class="section"><div class="cs-section-label">03 — Design Process</div><h2 class="section-title">From paper flows to digital experiences</h2><div class="timeline"><div class="tl-step"><div class="tl-dot">🔎</div><h5>Discover</h5><p>Role interviews, process mapping</p></div><div class="tl-step"><div class="tl-dot">🗺️</div><h5>Define</h5><p>3 user journeys, HMW statements</p></div><div class="tl-step"><div class="tl-dot">✏️</div><h5>Sketch</h5><p>Paper wireframes, Miro flow mapping</p></div><div class="tl-step"><div class="tl-dot">🖥️</div><h5>Design</h5><p>Hi-fi UI in Sketch with Valeo brand</p></div><div class="tl-step"><div class="tl-dot">✅</div><h5>Validate</h5><p>Walkthrough sessions, iteration rounds</p></div></div></section>
+  <section class="section alt"><div class="cs-section-label">04 — Designs</div><h2 class="section-title">Three flows — one cohesive system</h2>
+    <div class="flow-row"><div class="flow-header"><div class="flow-badge green">HR Flow</div><div class="flow-title">Cycle management &amp; employee coordination</div></div><div class="img-grid two"><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/7286ee114938089.6045110c1d991.png" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/f4be92114938089.6045110c1bbe1.png" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/5269e6114938089.6045110c1b3bf.png" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/f254d0114938089.6045110c1cca6.png" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div></div><div class="img-grid one" style="margin-top:2px"><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/62b44f114938089.6045110c1d44c.png" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div></div><div class="annotation green">HR coordinators get a dashboard view of the full appraisal cycle — status indicators eliminate the need for email chasers entirely.</div></div>
+    <div class="flow-row" style="margin-top:3rem"><div class="flow-header"><div class="flow-badge green">Leader Flow</div><div class="flow-title">Team review &amp; rating submission</div></div><div class="img-grid two"><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/a2c9cc114938089.6045110c1e6ce.png" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/3f92af114938089.6045110c1df1c.png" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div></div><div class="annotation green">Leaders see direct reports' self-assessments and submit structured evaluations — guided through each team member with clear rating inputs.</div></div>
+    <div class="flow-row" style="margin-top:3rem"><div class="flow-header"><div class="flow-badge green">Manager Flow</div><div class="flow-title">Calibration, sign-off &amp; final review</div></div><div class="img-grid two"><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/800e41114938089.6045110c1c775.png" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/4f1ada114938089.6045110c1c22f.png" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div></div><div class="annotation green">Comparative view highlights discrepancies between self-assessment and leader scores, making calibration faster and more consistent.</div></div>
   </section>
+  <section class="section"><div class="cs-section-label">05 — Design Decisions</div><h2 class="section-title">Key choices</h2><div class="decision"><div class="d-side before"><label>Before</label><h5>One generic form for all roles</h5><p>Actions were unclear, responsibilities overlapped, and users had to figure out what they needed to do themselves.</p></div><div class="d-side after-green"><label>After</label><h5>Role-gated entry with tailored flows</h5><p>HR gets cycle oversight, leaders get review queues, managers get calibration dashboards.</p></div></div><div class="decision"><div class="d-side before"><label>Before</label><h5>No visibility into cycle progress</h5><p>HR sent chase emails. Completion rates suffered.</p></div><div class="d-side after-green"><label>After</label><h5>Inline real-time status indicators</h5><p>Every row shows Pending, In Review, Completed, or Overdue — instant visibility, no manual chasing.</p></div></div></section>
+  <section class="section alt"><div class="cs-section-label">06 — Outcomes</div><h2 class="section-title">Impact</h2><div class="four-col"><div class="outcome-card green-top"><span class="outcome-num green">3×</span><div class="outcome-label">Faster cycle completion</div><div class="outcome-sub">From weeks overdue to on-schedule</div></div><div class="outcome-card green-top"><span class="outcome-num green">0</span><div class="outcome-label">Email chains for status</div><div class="outcome-sub">Replaced by in-platform indicators</div></div><div class="outcome-card green-top"><span class="outcome-num green">3</span><div class="outcome-label">Distinct role flows</div><div class="outcome-sub">HR, Leader, Manager — purpose-built</div></div><div class="outcome-card green-top"><span class="outcome-num green">↑92%</span><div class="outcome-label">User satisfaction</div><div class="outcome-sub">Post-launch survey, all three roles</div></div></div></section>
+  <section class="section"><div class="cs-section-label">07 — Learnings</div><h2 class="section-title">What this taught me</h2><div class="learning"><div class="l-num green">01</div><div class="l-body"><h5>Role clarity is the foundation of enterprise UX</h5><p>In multi-stakeholder systems, the biggest UX win is often simply making clear who does what and when.</p></div></div><div class="learning"><div class="l-num green">02</div><div class="l-body"><h5>Status visibility replaces communication overhead</h5><p>Every email we eliminated was a design opportunity. A systemic fix, not a feature addition.</p></div></div><div class="learning"><div class="l-num green">03</div><div class="l-body"><h5>Designing for multiple roles requires discipline</h5><p>The temptation is one flexible interface. The better answer is three focused ones.</p></div></div></section>
+  <footer class="cs-footer"><h3>Sarah Abouzainah</h3><p>Chief UX/UI Designer · Valeo Egypt · 16+ years in enterprise product design</p><div class="footer-links"><a class="footer-link" href="https://www.behance.net/gallery/114938089/UXUI-Valeo-Appraisal-Process">View on Behance</a><a class="footer-link" href="https://www.behance.net/SarahAbouzainah">Full Portfolio</a><a class="footer-link" href="http://linkedin.com/in/sarah-abouzainah/">LinkedIn</a></div><div class="footer-credit">© 2021 · Valeo Appraisal Process</div></footer>
+</div>
 
-  <section class="section alt">
-    <div class="section-label">02 — Research</div>
-    <h2 class="section-title">Understanding each role's journey</h2>
-    <p class="section-body">We interviewed 12 participants across the three roles: 4 HR coordinators, 4 team leaders, and 4 managers. We mapped their current process end-to-end and identified where breakdowns occurred most frequently.</p>
-    <div class="stat-row">
-      <div class="stat-box"><span class="stat-num green">12</span><span class="stat-lbl">Role-based interviews</span></div>
-      <div class="stat-box"><span class="stat-num green">3</span><span class="stat-lbl">Distinct user roles mapped</span></div>
-      <div class="stat-box"><span class="stat-num green">67%</span><span class="stat-lbl">Said deadline tracking was a top pain</span></div>
-      <div class="stat-box"><span class="stat-num green">5×</span><span class="stat-lbl">Avg. email exchanges per review cycle</span></div>
-    </div>
-    <div class="three-col">
-      <div class="insight"><div class="insight-icon green">👥</div><h4>Insight 1 — Role clarity is essential</h4><p>Each role had entirely different tasks: HR coordinates, leaders review teams, managers calibrate. A single shared interface caused confusion about who should act next.</p></div>
-      <div class="insight"><div class="insight-icon green">📋</div><h4>Insight 2 — Status visibility drives completion</h4><p>HR couldn't see who was blocking progress. Adding clear status indicators could reduce follow-up emails by 80%+.</p></div>
-      <div class="insight"><div class="insight-icon green">⏰</div><h4>Insight 3 — Deadlines need to be surfaced</h4><p>Users only discovered they were late when HR sent a chase email. In-product deadline visibility and nudges were critical to keeping cycles on track.</p></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">03 — Design Process</div>
-    <h2 class="section-title">From paper flows to digital experiences</h2>
-    <div class="timeline">
-      <div class="tl-step"><div class="tl-dot">🔎</div><h5>Discover</h5><p>Role interviews, current process mapping, identifying failure points</p></div>
-      <div class="tl-step"><div class="tl-dot">🗺️</div><h5>Define</h5><p>3 role-based user journeys, HMW statements, priority matrix</p></div>
-      <div class="tl-step"><div class="tl-dot">✏️</div><h5>Sketch</h5><p>Paper wireframes per role, whiteboard flow mapping in Miro</p></div>
-      <div class="tl-step"><div class="tl-dot">🖥️</div><h5>Design</h5><p>High-fidelity UI in Sketch with Valeo brand applied</p></div>
-      <div class="tl-step"><div class="tl-dot">✅</div><h5>Validate</h5><p>Walkthrough sessions with 2 users per role, iteration rounds</p></div>
-    </div>
-  </section>
-
-  <section class="section alt">
-    <div class="section-label">04 — Designs</div>
-    <h2 class="section-title">Three flows — one cohesive system</h2>
-    <p class="section-body">Each role received a distinct, purpose-built flow. The designs below are the final deliverables published on Behance.</p>
-    <div class="flow-row" style="margin-top:36px">
-      <div class="flow-header"><div class="flow-badge green">HR Flow</div><div class="flow-title">Cycle management &amp; employee coordination</div></div>
-      <div class="img-grid two">
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/7286ee114938089.6045110c1d991.png" alt="HR Flow — Cover" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/f4be92114938089.6045110c1bbe1.png" alt="HR Flow — Overview" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/5269e6114938089.6045110c1b3bf.png" alt="HR Flow — A" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/f254d0114938089.6045110c1cca6.png" alt="HR Flow — B" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-      </div>
-      <div class="img-grid one" style="margin-top:14px"><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/62b44f114938089.6045110c1d44c.png" alt="HR Flow — Full" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div></div>
-      <div class="annotation green" style="margin-top:14px">HR coordinators get a dashboard view of the full appraisal cycle — who has submitted, who is pending, and where each employee is in the review chain. Status indicators eliminate the need for email chasers.</div>
-    </div>
-    <div class="flow-row" style="margin-top:40px">
-      <div class="flow-header"><div class="flow-badge green">Leader Flow</div><div class="flow-title">Team review &amp; rating submission</div></div>
-      <div class="img-grid two">
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/a2c9cc114938089.6045110c1e6ce.png" alt="Leader Flow — A" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/3f92af114938089.6045110c1df1c.png" alt="Leader Flow — B" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-      </div>
-      <div class="annotation green" style="margin-top:14px">Leaders see their direct reports' self-assessments and submit structured evaluations through each team member with clear rating inputs — no blank forms, no ambiguity.</div>
-    </div>
-    <div class="flow-row" style="margin-top:40px">
-      <div class="flow-header"><div class="flow-badge green">Manager Flow</div><div class="flow-title">Calibration, sign-off &amp; final review</div></div>
-      <div class="img-grid two">
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/800e41114938089.6045110c1c775.png" alt="Manager Flow — A" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/4f1ada114938089.6045110c1c22f.png" alt="Manager Flow — B" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-      </div>
-      <div class="annotation green" style="margin-top:14px">Managers review leader assessments, apply calibration adjustments, and sign off on final ratings. The comparative view highlights discrepancies, making calibration decisions faster and more consistent.</div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">05 — Design Decisions</div>
-    <h2 class="section-title">Key choices that shaped the design</h2>
-    <div class="decision">
-      <div class="d-side before"><label>Before</label><h5>One generic form for all roles</h5><p>Every user — HR, leader, manager — accessed the same undifferentiated form. Actions were unclear, responsibilities overlapped, and users had to figure out what they needed to do themselves.</p></div>
-      <div class="d-side after-green"><label>After</label><h5>Role-gated entry with tailored flows</h5><p>Users enter through their role and see only what's relevant. HR gets cycle oversight, leaders get review queues, managers get calibration dashboards — three distinct, purposeful experiences.</p></div>
-    </div>
-    <div class="decision">
-      <div class="d-side before"><label>Before</label><h5>No visibility into cycle progress</h5><p>HR had to send emails asking for status updates. Employees didn't know if they were blocking the process. Completion rates suffered.</p></div>
-      <div class="d-side after-green"><label>After</label><h5>Inline status indicators throughout</h5><p>Every employee row shows a real-time status — Pending, In Review, Completed, Overdue — giving HR instant cycle visibility without any manual chasing.</p></div>
-    </div>
-  </section>
-
-  <section class="section alt">
-    <div class="section-label">06 — Outcomes</div>
-    <h2 class="section-title">Impact on the appraisal cycle</h2>
-    <div class="four-col">
-      <div class="outcome-card green-top"><span class="outcome-num green">3×</span><div class="outcome-label">Faster cycle completion</div><div class="outcome-sub">Reduced from weeks overdue to on-schedule delivery</div></div>
-      <div class="outcome-card green-top"><span class="outcome-num green">0</span><div class="outcome-label">Email chains for status</div><div class="outcome-sub">Replaced by in-platform status indicators</div></div>
-      <div class="outcome-card green-top"><span class="outcome-num green">3</span><div class="outcome-label">Distinct role flows</div><div class="outcome-sub">HR, Leader, Manager — each purpose-built</div></div>
-      <div class="outcome-card green-top"><span class="outcome-num green">↑92%</span><div class="outcome-label">User satisfaction</div><div class="outcome-sub">Post-launch survey across all three roles</div></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">07 — Learnings</div>
-    <h2 class="section-title">What this project taught me</h2>
-    <div class="learning"><div class="l-num green">01</div><div class="l-body"><h5>Role clarity is the foundation of enterprise UX</h5><p>In multi-stakeholder enterprise systems, the biggest UX win is often simply making clear who does what and when. Role-gated flows reduce cognitive load far more than visual polish.</p></div></div>
-    <div class="learning"><div class="l-num green">02</div><div class="l-body"><h5>Status visibility replaces communication overhead</h5><p>Every email we eliminated was a design opportunity. Surfacing real-time cycle status in the UI removed the need for coordination entirely — a systemic fix, not a feature addition.</p></div></div>
-    <div class="learning"><div class="l-num green">03</div><div class="l-body"><h5>Designing for multiple roles requires discipline</h5><p>The temptation is to build one flexible interface that serves everyone. The better answer is three focused ones — constraining each view to only what that role needs to act next.</p></div></div>
-  </section>
-
-  <footer class="cs-footer">
-    <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:14px"><div class="f-vdot">V</div></div>
-    <h3>Sarah Abouzainah</h3>
-    <p>Chief UX/UI Designer · Valeo Egypt · 16+ years in enterprise product design</p>
-    <div class="footer-links">
-      <a class="footer-link" href="https://www.behance.net/gallery/114938089/UXUI-Valeo-Appraisal-Process">View on Behance</a>
-      <a class="footer-link" href="https://www.behance.net/SarahAbouzainah">Full Portfolio</a>
-      <a class="footer-link" href="http://linkedin.com/in/sarah-abouzainah/">LinkedIn</a>
-    </div>
-    <div class="footer-credit">© 2021 · Valeo Appraisal Process · UX/UI Case Study</div>
-  </footer>
-</div><!-- /page-appraisal -->
-
-
-<!-- ── PAGE 2: 10,000-FLOOR ELEVATOR ── -->
+<!-- PAGE 2: ELEVATOR -->
 <div id="page-elevator" class="page">
   <div class="cs-hero hero-elevator">
     <div class="project-label purple">◈ Speculative · UX Research · 2019</div>
-    <h1>10,000-Floor<br><em style="color:#C4B5FD;">Elevator</em></h1>
+    <h1>10,000-Floor<br><em>Elevator</em></h1>
     <p class="hero-sub-cs">A speculative UX research study exploring how a control interface for a 10,000-floor elevator would work — questioning assumptions around numbering, navigation, wayfinding, and cognitive load at extreme scale.</p>
-    <div class="hero-tags">
-      <span class="hero-tag accent-purple">Speculative Design</span><span class="hero-tag accent-purple">UX Research</span><span class="hero-tag">Interaction Design</span><span class="hero-tag">Information Architecture</span><span class="hero-tag">Cognitive Load</span>
-    </div>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><label>Designer</label><span>Sarah Abouzainah</span></div>
-      <div class="hero-meta-item"><label>Type</label><span>Personal Research Project</span></div>
-      <div class="hero-meta-item"><label>Published</label><span>2019</span></div>
-      <div class="hero-meta-item"><label>Domain</label><span>Speculative UX · Interaction Design</span></div>
-    </div>
+    <div class="hero-tags"><span class="hero-tag accent-purple">Speculative Design</span><span class="hero-tag accent-purple">UX Research</span><span class="hero-tag">Interaction Design</span><span class="hero-tag">Information Architecture</span><span class="hero-tag">Cognitive Load</span></div>
+    <div class="hero-meta"><div class="hero-meta-item"><label>Designer</label><span>Sarah Abouzainah</span></div><div class="hero-meta-item"><label>Type</label><span>Personal Research Project</span></div><div class="hero-meta-item"><label>Year</label><span>2019</span></div><div class="hero-meta-item"><label>Domain</label><span>Speculative UX · Interaction Design</span></div></div>
   </div>
+  <section class="section"><div class="cs-section-label">01 — Problem Space</div><h2 class="section-title">What happens when scale breaks convention?</h2><p class="section-body">Standard elevator UI is designed for a few dozen floors. But what if you had 10,000? This project explores the point at which familiar patterns collapse — and what a truly rethought control interface would need to do differently.</p><div class="three-col"><div class="cs-card purple-left"><h4>🔢 Numbers become meaningless</h4><p>Scrolling through 10,000 floor buttons is unusable. The conventional floor-number model breaks down entirely.</p></div><div class="cs-card purple-left"><h4>🧠 Cognitive overload by default</h4><p>Without zoning, categorisation, or search, users face a decision space that exceeds human working memory by orders of magnitude.</p></div><div class="cs-card purple-left"><h4>🗺️ Wayfinding has no reference points</h4><p>Floors need a new type of identity — not just numbers, but zones, landmarks, and contextual anchors users can reason about.</p></div></div><div class="hmw"><label>How Might We</label><h3>"How might we design an elevator control interface that allows a person to navigate 10,000 floors quickly, confidently, and without cognitive overload?"</h3></div></section>
+  <section class="section alt"><div class="cs-section-label">02 — Research</div><h2 class="section-title">Studying how people orient in large spaces</h2><p class="section-body">The research drew on analogies from large-scale wayfinding systems — airports, metro networks, hospital campuses — mapping the heuristics that make them navigable despite their scale.</p><div class="stat-row"><div class="stat-box"><span class="stat-num purple">10K</span><span class="stat-lbl">Floors to navigate</span></div><div class="stat-box"><span class="stat-num purple">7±2</span><span class="stat-lbl">Miller's Law — items in working memory</span></div><div class="stat-box"><span class="stat-num purple">3</span><span class="stat-lbl">Wayfinding analogies studied</span></div><div class="stat-box"><span class="stat-num purple">4</span><span class="stat-lbl">Alternative interface concepts</span></div></div><div class="three-col" style="margin-top:2.5rem"><div class="insight"><div class="insight-icon purple">🛫</div><h4>Zones before numbers</h4><p>Airports navigate by terminal → concourse → gate. A 10,000-floor building needs the same zone hierarchy.</p></div><div class="insight"><div class="insight-icon purple">🔍</div><h4>Search over scroll</h4><p>Users need to describe their destination, not locate it in a list. A search model transfers naturally to extreme-scale navigation.</p></div><div class="insight"><div class="insight-icon purple">⭐</div><h4>Recents &amp; favourites are essential</h4><p>The vast majority of elevator journeys are repeat trips. Surfacing recent destinations eliminates the full navigation problem for most users.</p></div></div></section>
+  <section class="section"><div class="cs-section-label">03 — Design Process</div><h2 class="section-title">From analogy to interface</h2><div class="timeline"><div class="tl-step"><div class="tl-dot">📖</div><h5>Research</h5><p>Wayfinding literature &amp; cognitive load theory</p></div><div class="tl-step"><div class="tl-dot">🗺️</div><h5>IA Mapping</h5><p>Zone hierarchy &amp; navigation decision tree</p></div><div class="tl-step"><div class="tl-dot">✏️</div><h5>Ideation</h5><p>4 interface concepts sketched</p></div><div class="tl-step"><div class="tl-dot">🖥️</div><h5>Design</h5><p>Hi-fi hybrid search interface</p></div><div class="tl-step"><div class="tl-dot">✅</div><h5>Validate</h5><p>Heuristic evaluation vs Nielsen's 10</p></div></div></section>
+  <section class="section alt"><div class="cs-section-label">04 — Key Designs</div><h2 class="section-title">Rethinking the panel entirely</h2><div class="flow-row"><div class="flow-header"><div class="flow-badge purple">Design Exploration</div><div class="flow-title">Zone-based navigation &amp; search interface</div></div><div class="img-grid two"><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/9a23e197389353.5ec9d8a18bee5.jpg" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/de47ef97389353.5ec9d8a18c62e.jpg" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/17fc8497389353.5ec9d8a18d294.jpg" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div><div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/09d1d897389353.5ec9d8a18dfba.jpg" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div></div><div class="annotation purple">Zone selector + search bar + recents panel — reducing 10,000 choices to a 3-step interaction: pick zone, refine, confirm floor.</div></div></section>
+  <section class="section"><div class="cs-section-label">05 — Design Decisions</div><h2 class="section-title">Key choices</h2><div class="decision"><div class="d-side before"><label>Convention</label><h5>One button per floor</h5><p>At 10,000 floors, physically impossible to render and cognitively impossible to use.</p></div><div class="d-side after-purple"><label>Solution</label><h5>Zone hierarchy + search</h5><p>Navigate via zones or type/speak destination. Most users never leave the Recents panel.</p></div></div><div class="decision"><div class="d-side before"><label>Convention</label><h5>Floor numbers as identity</h5><p>Number 7,431 has no meaning — users cannot orient themselves.</p></div><div class="d-side after-purple"><label>Solution</label><h5>Named zones as primary navigation</h5><p>Each zone carries a name (district, function, landmark) as a meaningful anchor. Numbers confirm, not navigate.</p></div></div></section>
+  <section class="section alt"><div class="cs-section-label">06 — Outcomes</div><h2 class="section-title">What the study demonstrated</h2><div class="four-col"><div class="outcome-card purple-top"><span class="outcome-num purple">4</span><div class="outcome-label">Concepts explored</div><div class="outcome-sub">Numeric, zone-based, voice, hybrid</div></div><div class="outcome-card purple-top"><span class="outcome-num purple">3</span><div class="outcome-label">Max navigation steps</div><div class="outcome-sub">Zone → Sub-zone → Floor</div></div><div class="outcome-card purple-top"><span class="outcome-num purple">80%</span><div class="outcome-label">Journeys via Recents</div><div class="outcome-sub">Most trips are repeat destinations</div></div><div class="outcome-card purple-top"><span class="outcome-num purple">0</span><div class="outcome-label">Buttons per floor</div><div class="outcome-sub">Convention abandoned entirely</div></div></div></section>
+  <section class="section"><div class="cs-section-label">07 — Learnings</div><h2 class="section-title">What this taught me</h2><div class="learning"><div class="l-num purple">01</div><div class="l-body"><h5>Extreme constraints unlock first-principles thinking</h5><p>Designing for 10,000 floors forces you to question every assumption. Convention becomes useless — which is where the most interesting design thinking happens.</p></div></div><div class="learning"><div class="l-num purple">02</div><div class="l-body"><h5>Wayfinding analogies are a powerful research tool</h5><p>When no precedent exists in your domain, look sideways. Airports and metro systems have solved large-scale navigation — their patterns translate more directly than expected.</p></div></div><div class="learning"><div class="l-num purple">03</div><div class="l-body"><h5>Most users only need a fraction of the interface</h5><p>Designing for 10,000 destinations sounds overwhelming. But 80% of journeys are repeat trips. Designing Recents well solves the real-world problem for the majority.</p></div></div></section>
+  <footer class="cs-footer"><h3>Sarah Abouzainah</h3><p>Product Design Leader · 16+ years in enterprise product design</p><div class="footer-links"><a class="footer-link" href="https://www.behance.net/gallery/97389353/User-Research-Design-Study-for-10000-Floor-Elevator">View on Behance</a><a class="footer-link" href="https://www.behance.net/SarahAbouzainah">Full Portfolio</a><a class="footer-link" href="http://linkedin.com/in/sarah-abouzainah/">LinkedIn</a></div><div class="footer-credit">© 2019 · 10,000-Floor Elevator · UX Research Study</div></footer>
+</div>
 
-  <section class="section">
-    <div class="section-label">01 — Problem Space</div>
-    <h2 class="section-title">What happens when scale breaks convention?</h2>
-    <p class="section-body">Standard elevator UI is designed for a few dozen floors. But what if you had 10,000? This project explores the point at which familiar patterns collapse — and what a truly rethought control interface would need to do differently.</p>
-    <div class="three-col">
-      <div class="cs-card purple-left"><h4>🔢 Numbers become meaningless</h4><p>Scrolling through 10,000 floor buttons is unusable. The conventional floor-number model breaks down entirely — users can't orient themselves in a space this vast.</p></div>
-      <div class="cs-card purple-left"><h4>🧠 Cognitive overload by default</h4><p>Without zoning, categorisation, or search, users face a decision space that exceeds human working memory by orders of magnitude.</p></div>
-      <div class="cs-card purple-left"><h4>🗺️ Wayfinding has no reference points</h4><p>In a 10,000-floor building, floors need a new type of identity — not just numbers, but zones, landmarks, and contextual anchors users can reason about.</p></div>
-    </div>
-    <div class="hmw hmw-purple"><label>How Might We</label><h3>"How might we design an elevator control interface that allows a person to navigate 10,000 floors quickly, confidently, and without cognitive overload?"</h3></div>
-  </section>
-
-  <section class="section alt">
-    <div class="section-label">02 — Research</div>
-    <h2 class="section-title">Studying how people orient in large spaces</h2>
-    <p class="section-body">The research drew on analogies from large-scale wayfinding systems — airports, metro networks, hospital campuses — and mapped the heuristics that make them navigable despite their scale.</p>
-    <div class="stat-row">
-      <div class="stat-box"><span class="stat-num purple">10K</span><span class="stat-lbl">Floors to navigate</span></div>
-      <div class="stat-box"><span class="stat-num purple">7±2</span><span class="stat-lbl">Miller's Law — items in working memory</span></div>
-      <div class="stat-box"><span class="stat-num purple">3</span><span class="stat-lbl">Wayfinding analogies studied (airport, metro, hospital)</span></div>
-      <div class="stat-box"><span class="stat-num purple">4</span><span class="stat-lbl">Alternative interface concepts explored</span></div>
-    </div>
-    <div class="three-col">
-      <div class="insight"><div class="insight-icon purple">🛫</div><h4>Insight 1 — Zones before numbers</h4><p>Airports don't navigate by gate number first — they navigate by terminal, then concourse, then gate. A 10,000-floor building needs a zone hierarchy that mirrors this logic.</p></div>
-      <div class="insight"><div class="insight-icon purple">🔍</div><h4>Insight 2 — Search over scroll</h4><p>Users need to describe their destination, not locate it in a list. A search or voice input model — like modern smartphone keyboards — transfers naturally to extreme-scale navigation.</p></div>
-      <div class="insight"><div class="insight-icon purple">⭐</div><h4>Insight 3 — Recents and favourites are essential</h4><p>The vast majority of elevator journeys are repeat trips. Surfacing recent and saved destinations eliminates the full navigation problem for most use cases.</p></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">03 — Design Process</div>
-    <h2 class="section-title">From analogy to interface</h2>
-    <div class="timeline">
-      <div class="tl-step"><div class="tl-dot">📖</div><h5>Desk Research</h5><p>Wayfinding literature, airport / metro system analysis, cognitive load theory</p></div>
-      <div class="tl-step"><div class="tl-dot">🗺️</div><h5>IA Mapping</h5><p>Defined zone hierarchy, floor naming taxonomy, and navigation decision tree</p></div>
-      <div class="tl-step"><div class="tl-dot">✏️</div><h5>Ideation</h5><p>Sketched 4 interface concepts: numeric keypad, zone selector, voice input, hybrid search</p></div>
-      <div class="tl-step"><div class="tl-dot">🖥️</div><h5>Design</h5><p>High-fidelity UI for the preferred hybrid interface with accessibility considerations</p></div>
-      <div class="tl-step"><div class="tl-dot">✅</div><h5>Validate</h5><p>Walkthrough review with peers; heuristic evaluation against Nielsen's 10 principles</p></div>
-    </div>
-  </section>
-
-  <section class="section alt">
-    <div class="section-label">04 — Key Designs</div>
-    <h2 class="section-title">Rethinking the panel entirely</h2>
-    <p class="section-body">The designs, published on Behance, explore what an elevator UI looks like when forced to abandon the button-per-floor convention and redesign from first principles.</p>
-    <div class="flow-row" style="margin-top:36px">
-      <div class="flow-header"><div class="flow-badge purple">Design Exploration</div><div class="flow-title">Zone-based navigation &amp; search interface</div></div>
-      <div class="img-grid two">
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/9a23e197389353.5ec9d8a18bee5.jpg" alt="Elevator — A" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/de47ef97389353.5ec9d8a18c62e.jpg" alt="Elevator — B" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/17fc8497389353.5ec9d8a18d294.jpg" alt="Elevator — C" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-        <div class="img-card"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/09d1d897389353.5ec9d8a18dfba.jpg" alt="Elevator — D" loading="lazy" onerror="this.closest('.img-card').style.display='none'"/></div>
-      </div>
-      <div class="annotation purple" style="margin-top:14px">The interface replaces the traditional button grid with a zone selector, search bar, and recents panel — reducing 10,000 choices to a 3-step interaction: pick a zone, refine by sub-zone, confirm floor.</div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">05 — Design Decisions</div>
-    <h2 class="section-title">Key choices that shaped the design</h2>
-    <div class="decision">
-      <div class="d-side before"><label>Convention</label><h5>One button per floor</h5><p>The traditional model gives every floor a dedicated button. At 10,000 floors, this creates an interface that is physically impossible to render and cognitively impossible to use.</p></div>
-      <div class="d-side after-purple"><label>Solution</label><h5>Zone hierarchy + search</h5><p>Users navigate top-down through zones (e.g. Residential → Block C → Floor 3,420) or type/speak their destination. Most users never leave the Recents panel at all.</p></div>
-    </div>
-    <div class="decision">
-      <div class="d-side before"><label>Convention</label><h5>Floor numbers as identity</h5><p>In standard elevators, floors are identified by number only. At scale, number 7,431 has no meaning — users cannot reason about it relative to their location or destination.</p></div>
-      <div class="d-side after-purple"><label>Solution</label><h5>Named zones as primary navigation</h5><p>Each zone carries a name (district, function, or landmark) that gives users a meaningful anchor. Numbers remain present but become secondary — confirmation, not navigation.</p></div>
-    </div>
-  </section>
-
-  <section class="section alt">
-    <div class="section-label">06 — Outcomes</div>
-    <h2 class="section-title">What the study demonstrated</h2>
-    <div class="four-col">
-      <div class="outcome-card purple-top"><span class="outcome-num purple">4</span><div class="outcome-label">Interface concepts explored</div><div class="outcome-sub">Numeric, zone-based, voice, and hybrid search</div></div>
-      <div class="outcome-card purple-top"><span class="outcome-num purple">3</span><div class="outcome-label">Navigation steps maximum</div><div class="outcome-sub">Zone → Sub-zone → Floor confirmation</div></div>
-      <div class="outcome-card purple-top"><span class="outcome-num purple">80%</span><div class="outcome-label">Journeys served by Recents</div><div class="outcome-sub">Most trips are repeat destinations</div></div>
-      <div class="outcome-card purple-top"><span class="outcome-num purple">0</span><div class="outcome-label">Buttons per floor</div><div class="outcome-sub">The button-per-floor model is abandoned entirely</div></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">07 — Learnings</div>
-    <h2 class="section-title">What this project taught me</h2>
-    <div class="learning"><div class="l-num purple">01</div><div class="l-body"><h5>Extreme constraints unlock first-principles thinking</h5><p>Designing for 10,000 floors forces you to question every assumption. The constraints are so severe that convention becomes useless — which is exactly where the most interesting design thinking happens.</p></div></div>
-    <div class="learning"><div class="l-num purple">02</div><div class="l-body"><h5>Wayfinding analogies are a powerful research tool</h5><p>When no precedent exists in your domain, look sideways. Airports and metro systems have solved the large-scale navigation problem — their patterns translate more directly than expected.</p></div></div>
-    <div class="learning"><div class="l-num purple">03</div><div class="l-body"><h5>Most users only need a fraction of the interface</h5><p>Designing for 10,000 destinations sounds overwhelming. But 80% of journeys are repeat trips. Designing the Recents experience well solves the real-world use case for the majority of users.</p></div></div>
-  </section>
-
-  <footer class="cs-footer">
-    <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:14px">
-      <div style="width:32px;height:32px;border-radius:7px;background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;font-style:italic;">SA</div>
-    </div>
-    <h3>Sarah Abouzainah</h3>
-    <p>Product Design Leader · 16+ years in enterprise product design</p>
-    <div class="footer-links">
-      <a class="footer-link" href="https://www.behance.net/gallery/97389353/User-Research-Design-Study-for-10000-Floor-Elevator">View on Behance</a>
-      <a class="footer-link" href="https://www.behance.net/SarahAbouzainah">Full Portfolio</a>
-      <a class="footer-link" href="http://linkedin.com/in/sarah-abouzainah/">LinkedIn</a>
-    </div>
-    <div class="footer-credit">© 2019 · 10,000-Floor Elevator · UX Research Study</div>
-  </footer>
-</div><!-- /page-elevator -->
-
-
-<!-- ── PAGE 3: WORKFORCE MANAGER ── -->
+<!-- PAGE 3: WORKFORCE MANAGER -->
 <div id="page-workforce" class="page">
   <div class="cs-hero hero-workforce">
     <div class="project-label teal">◈ Valeo · UX/UI Case Study · 2026</div>
-    <h1>Workforce<br><em style="color:#60A5FA;">Manager</em></h1>
-    <p class="hero-sub-cs">A workforce capacity management tool for engineering managers — giving them real-time team visibility, smarter project allocation, faster request assessment, and proactive hiring decisions.</p>
-    <div class="hero-tags">
-      <span class="hero-tag accent-teal">Engineering Ops</span><span class="hero-tag accent-teal">Capacity Planning</span><span class="hero-tag">Data Visualization</span><span class="hero-tag">UX Research</span><span class="hero-tag">Product Design</span><span class="hero-tag">Figma · Miro</span>
-    </div>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><label>Designer</label><span>Sarah Abouzainah</span></div>
-      <div class="hero-meta-item"><label>Company</label><span>Valeo Egypt</span></div>
-      <div class="hero-meta-item"><label>Tools</label><span>Figma · Miro</span></div>
-      <div class="hero-meta-item"><label>Year</label><span>2026 · 6 weeks</span></div>
-      <div class="hero-meta-item"><label>Domain</label><span>HR Tech · Workforce Mgmt</span></div>
-    </div>
+    <h1>Workforce<br><em>Manager</em></h1>
+    <p class="hero-sub-cs">A real-time workforce capacity management tool for engineering managers — team visibility, smarter project allocation, faster request assessment, and proactive hiring decisions.</p>
+    <div class="hero-tags"><span class="hero-tag accent-teal">Engineering Ops</span><span class="hero-tag accent-teal">Capacity Planning</span><span class="hero-tag">Data Visualization</span><span class="hero-tag">UX Research</span><span class="hero-tag">Figma · Miro</span></div>
+    <div class="hero-meta"><div class="hero-meta-item"><label>Designer</label><span>Sarah Abouzainah</span></div><div class="hero-meta-item"><label>Company</label><span>Valeo Egypt</span></div><div class="hero-meta-item"><label>Tools</label><span>Figma · Miro</span></div><div class="hero-meta-item"><label>Year</label><span>2026 · 6 weeks</span></div><div class="hero-meta-item"><label>Domain</label><span>HR Tech · Workforce Mgmt</span></div></div>
   </div>
-
-  <section class="section">
-    <div class="section-label">01 — Problem Space</div>
-    <h2 class="section-title">Engineering managers are flying blind</h2>
-    <p class="section-body">Engineering managers had no single place to see their team's capacity. Project allocation, incoming requests, and hiring decisions were all handled reactively — through spreadsheets, ad-hoc meetings, and gut feel.</p>
-    <div class="three-col">
-      <div class="cs-card teal-left"><h4>🔎 No capacity visibility</h4><p>Managers couldn't tell who was overloaded or who had free bandwidth until someone missed a deadline or burned out.</p></div>
-      <div class="cs-card teal-left"><h4>⚡ Reactive to requests</h4><p>Answering "can we take this?" required 2–3 coordination meetings. There was no quick way to assess feasibility against current load.</p></div>
-      <div class="cs-card teal-left"><h4>📅 Hiring always too late</h4><p>Without forecasting tools, talent gaps only became visible when delivery was already at risk — too late to hire in time.</p></div>
-    </div>
-    <div class="hmw hmw-teal"><label>How Might We</label><h3>"How might we give engineering managers a single real-time view of their team's capacity — so they can allocate better, respond to requests in seconds, and hire before it becomes urgent?"</h3></div>
-  </section>
-
-  <section class="section alt">
-    <div class="section-label">02 — Research</div>
-    <h2 class="section-title">Understanding the manager's daily reality</h2>
-    <p class="section-body">Contextual interviews with 8 engineering managers and a survey of 40 managers, focused on how they track capacity today and what decisions they struggle with most.</p>
-    <div class="stat-row">
-      <div class="stat-box"><span class="stat-num teal">8</span><span class="stat-lbl">Manager depth interviews</span></div>
-      <div class="stat-box"><span class="stat-num teal">40</span><span class="stat-lbl">Survey respondents</span></div>
-      <div class="stat-box"><span class="stat-num teal">74%</span><span class="stat-lbl">Used spreadsheets for capacity</span></div>
-      <div class="stat-box"><span class="stat-num teal">3×</span><span class="stat-lbl">Avg. meetings per request answer</span></div>
-      <div class="stat-box"><span class="stat-num teal">89%</span><span class="stat-lbl">Said they hired too late</span></div>
-    </div>
-    <div class="three-col">
-      <div class="insight"><div class="insight-icon teal">📊</div><h4>Insight 1 — Fragmented data</h4><p>Capacity data lived in HR systems, project trackers, and personal spreadsheets — never in one place a manager could act from.</p></div>
-      <div class="insight"><div class="insight-icon teal">🕐</div><h4>Insight 2 — Time is the key axis</h4><p>Managers needed to view capacity at different horizons simultaneously — a month view for today, a year view for planning.</p></div>
-      <div class="insight"><div class="insight-icon teal">🏗️</div><h4>Insight 3 — Hierarchy gives meaning</h4><p>A flat member list was useless. Capacity only became actionable within the team structure the manager actually managed.</p></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">03 — Information Architecture</div>
-    <h2 class="section-title">Five pages, five manager decisions</h2>
-    <p class="section-body">After card sorting with 6 participants, we defined 5 pages each mapping to a distinct manager workflow — kept flat to minimise navigation friction.</p>
-    <div class="ia-box">
-      <div style="display:flex;flex-direction:column;align-items:center;">
-        <div class="ia-root-node teal">◈ Workforce Manager</div>
-        <div class="ia-con-v"></div>
-        <div class="ia-h">
-          <div class="ia-branch"><div class="ia-branch-v"></div><div class="ia-page-node teal">⊞ Overview</div><div style="display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:5px"><div class="ia-leaf">Load bar · Alerts</div><div class="ia-leaf">Request queue</div></div></div>
-          <div class="ia-branch"><div class="ia-branch-v"></div><div class="ia-page-node teal">◫ Team &amp; Capacity</div><div style="display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:5px"><div class="ia-leaf">Tree / Org Chart</div><div class="ia-leaf">Expandable alloc rows</div></div></div>
-          <div class="ia-branch"><div class="ia-branch-v"></div><div class="ia-page-node teal">⊡ Team Projects</div><div style="display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:5px"><div class="ia-leaf">Project → Sub-project</div><div class="ia-leaf">Member alloc rows</div></div></div>
-          <div class="ia-branch"><div class="ia-branch-v"></div><div class="ia-page-node teal">▤ Requests</div><div style="display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:5px"><div class="ia-leaf">Feasibility check</div><div class="ia-leaf">Skill matching</div></div></div>
-          <div class="ia-branch"><div class="ia-branch-v"></div><div class="ia-page-node teal">◈ Hiring Plan</div><div style="display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:5px"><div class="ia-leaf">Quarterly forecast</div><div class="ia-leaf">Role recommendations</div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt">
-    <div class="section-label">04 — Design Process</div>
-    <h2 class="section-title">Discovery to delivery</h2>
-    <div class="timeline">
-      <div class="tl-step"><div class="tl-dot">🔎</div><h5>Discover</h5><p>Interviews, survey, competitive analysis of Lattice, Workday, Linear</p></div>
-      <div class="tl-step"><div class="tl-dot">🗺️</div><h5>Define</h5><p>Affinity mapping, HMW statements, 3 user journey maps</p></div>
-      <div class="tl-step"><div class="tl-dot">✏️</div><h5>Design</h5><p>Wireframes → design system → hi-fi Figma prototype</p></div>
-      <div class="tl-step"><div class="tl-dot">🧪</div><h5>Test</h5><p>Usability testing with 5 managers, tree testing IA</p></div>
-      <div class="tl-step"><div class="tl-dot">🔄</div><h5>Iterate</h5><p>Merged Capacity + Team pages, added period nav, expandable rows</p></div>
-    </div>
-  </section>
-
-  <section class="section alt">
-    <div class="section-label">05 — Design Decisions</div>
-    <h2 class="section-title">Key choices that shaped the design</h2>
-    <div class="decision">
-      <div class="d-side before"><label>Before</label><h5>Separate Team + Capacity pages</h5><p>Users had to navigate between two pages to answer one question: "Is this person free and what are they working on?" Constant context-switching frustrated managers.</p></div>
-      <div class="d-side after-teal"><label>After</label><h5>Merged "Team &amp; Capacity" with expandable rows</h5><p>Tree hierarchy shows committed/free/load inline. Expanding ▸ reveals exact sub-project allocations without leaving the page.</p></div>
-    </div>
-    <div class="decision">
-      <div class="d-side before"><label>Before</label><h5>Static single-period view</h5><p>Managers needed to plan across multiple horizons simultaneously — one timeframe was never enough to make a good decision.</p></div>
-      <div class="d-side after-teal"><label>After</label><h5>Multi-level period navigation</h5><p>Month / Quarter / Semester / Year with navigable sub-periods. Member Profile shows all four timeframes simultaneously on one screen.</p></div>
-    </div>
-    <div class="decision">
-      <div class="d-side before"><label>Before</label><h5>Decorative severity color pills</h5><p>Green/amber/red indicators were purely visual. Managers had to manually hunt for relevant people.</p></div>
-      <div class="d-side after-teal"><label>After</label><h5>Severity pills as interactive filters</h5><p>Clicking "≥ 90% Critical" instantly filters the tree to show only overloaded members across all sub-teams. One click, zero hunting.</p></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">06 — Outcomes</div>
-    <h2 class="section-title">Measured against original pain points</h2>
-    <div class="four-col">
-      <div class="outcome-card teal-top"><span class="outcome-num teal">4×</span><div class="outcome-label">Faster request assessment</div><div class="outcome-sub">From 3 meetings to seconds via the Requests page</div></div>
-      <div class="outcome-card teal-top"><span class="outcome-num teal">1</span><div class="outcome-label">Single source of truth</div><div class="outcome-sub">Replacing spreadsheets, HR systems, email chains</div></div>
-      <div class="outcome-card teal-top"><span class="outcome-num teal">100%</span><div class="outcome-label">Task completion rate</div><div class="outcome-sub">All 5 test participants completed core tasks unaided</div></div>
-      <div class="outcome-card teal-top"><span class="outcome-num teal">2Q</span><div class="outcome-label">Earlier hiring decisions</div><div class="outcome-sub">Forecast chart enables planning 2 quarters ahead</div></div>
-    </div>
-  </section>
-
-  <section class="section alt">
-    <div class="section-label">07 — Learnings</div>
-    <h2 class="section-title">What this project taught me</h2>
-    <div class="learning"><div class="l-num teal">01</div><div class="l-body"><h5>Data-dense ≠ overwhelming — context is everything</h5><p>Engineering managers are comfortable with numbers. The challenge wasn't simplification — it was giving every number its organizational and project context so it was immediately actionable.</p></div></div>
-    <div class="learning"><div class="l-num teal">02</div><div class="l-body"><h5>Time is a first-class design dimension</h5><p>Most workforce tools collapse time into one view. Designing navigable period hierarchies fundamentally changed how managers could plan ahead.</p></div></div>
-    <div class="learning"><div class="l-num teal">03</div><div class="l-body"><h5>Merge pages when the decision is the same</h5><p>We started with 6 pages. Testing revealed managers constantly switched between Team and Capacity to answer one question. Merging them removed a mental model split that served the tool, not the user.</p></div></div>
-  </section>
-
-  <footer class="cs-footer">
-    <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:14px"><div class="f-vdot">V</div></div>
-    <h3>Sarah Abouzainah</h3>
-    <p>Chief UX/UI Designer · Valeo Egypt · 16+ years in enterprise product design</p>
-    <div class="footer-links">
-      <a class="footer-link" href="https://www.behance.net/SarahAbouzainah">Full Portfolio</a>
-      <a class="footer-link" href="http://linkedin.com/in/sarah-abouzainah/">LinkedIn</a>
-      <a class="footer-link" href="mailto:sarah.abouzaina@gmail.com">Get in touch</a>
-    </div>
-    <div class="footer-credit">© 2026 · Workforce Manager · UX/UI Case Study</div>
-  </footer>
-</div><!-- /page-workforce -->
+  <section class="section"><div class="cs-section-label">01 — Problem Space</div><h2 class="section-title">Engineering managers are flying blind</h2><p class="section-body">Engineering managers had no single place to see their team's capacity. Project allocation, incoming requests, and hiring decisions were handled reactively — through spreadsheets, ad-hoc meetings, and gut feel.</p><div class="three-col"><div class="cs-card teal-left"><h4>🔎 No capacity visibility</h4><p>Managers couldn't tell who was overloaded until someone missed a deadline or burned out.</p></div><div class="cs-card teal-left"><h4>⚡ Reactive to requests</h4><p>Answering "can we take this?" required 2–3 coordination meetings. No quick feasibility check existed.</p></div><div class="cs-card teal-left"><h4>📅 Hiring always too late</h4><p>Without forecasting, talent gaps only became visible when delivery was already at risk.</p></div></div><div class="hmw"><label>How Might We</label><h3>"How might we give engineering managers a single real-time view of their team's capacity — so they can allocate better, respond to requests in seconds, and hire before it becomes urgent?"</h3></div></section>
+  <section class="section alt"><div class="cs-section-label">02 — Research</div><h2 class="section-title">Understanding the manager's daily reality</h2><p class="section-body">Contextual interviews with 8 engineering managers and a survey of 40, focused on how they track capacity and what decisions they struggle with most.</p><div class="stat-row"><div class="stat-box"><span class="stat-num teal">8</span><span class="stat-lbl">Manager depth interviews</span></div><div class="stat-box"><span class="stat-num teal">40</span><span class="stat-lbl">Survey respondents</span></div><div class="stat-box"><span class="stat-num teal">74%</span><span class="stat-lbl">Used spreadsheets for capacity</span></div><div class="stat-box"><span class="stat-num teal">3×</span><span class="stat-lbl">Avg. meetings per request answer</span></div><div class="stat-box"><span class="stat-num teal">89%</span><span class="stat-lbl">Said they hired too late</span></div></div><div class="three-col" style="margin-top:2.5rem"><div class="insight"><div class="insight-icon teal">📊</div><h4>Fragmented data</h4><p>Capacity data lived in HR systems, project trackers, and spreadsheets — never in one actionable place.</p></div><div class="insight"><div class="insight-icon teal">🕐</div><h4>Time is the key axis</h4><p>Managers needed to view capacity at different horizons — a month view for now, a year view for planning.</p></div><div class="insight"><div class="insight-icon teal">🏗️</div><h4>Hierarchy gives meaning</h4><p>A flat member list was useless. Capacity only became actionable within the team structure managers actually ran.</p></div></div></section>
+  <section class="section"><div class="cs-section-label">03 — IA</div><h2 class="section-title">Five pages, five manager decisions</h2><div class="ia-box"><div style="display:flex;flex-direction:column;align-items:center;"><div class="ia-root-node teal">◈ Workforce Manager</div><div class="ia-con-v"></div><div class="ia-h"><div class="ia-branch"><div class="ia-branch-v"></div><div class="ia-page-node teal">⊞ Overview</div><div style="display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:4px"><div class="ia-leaf">Load bar · Alerts</div><div class="ia-leaf">Request queue</div></div></div><div class="ia-branch"><div class="ia-branch-v"></div><div class="ia-page-node teal">◫ Team &amp; Capacity</div><div style="display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:4px"><div class="ia-leaf">Tree / Org Chart</div><div class="ia-leaf">Expandable alloc rows</div></div></div><div class="ia-branch"><div class="ia-branch-v"></div><div class="ia-page-node teal">⊡ Projects</div><div style="display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:4px"><div class="ia-leaf">Project → Sub</div><div class="ia-leaf">Member alloc rows</div></div></div><div class="ia-branch"><div class="ia-branch-v"></div><div class="ia-page-node teal">▤ Requests</div><div style="display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:4px"><div class="ia-leaf">Feasibility check</div><div class="ia-leaf">Skill matching</div></div></div><div class="ia-branch"><div class="ia-branch-v"></div><div class="ia-page-node teal">◈ Hiring</div><div style="display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:4px"><div class="ia-leaf">Quarterly forecast</div><div class="ia-leaf">Role recs</div></div></div></div></div></div></section>
+  <section class="section alt"><div class="cs-section-label">04 — Design Decisions</div><h2 class="section-title">Key choices</h2><div class="decision"><div class="d-side before"><label>Before</label><h5>Separate Team + Capacity pages</h5><p>Constant context-switching to answer one question: "Is this person free and what are they working on?"</p></div><div class="d-side after-teal"><label>After</label><h5>Merged view with expandable rows</h5><p>Tree hierarchy shows committed/free/load inline. Expanding ▸ reveals sub-project allocations without leaving the page.</p></div></div><div class="decision"><div class="d-side before"><label>Before</label><h5>Static single-period view</h5><p>One timeframe was never enough to make a good planning decision.</p></div><div class="d-side after-teal"><label>After</label><h5>Multi-level period navigation</h5><p>Month / Quarter / Semester / Year. Member Profile shows all four timeframes simultaneously.</p></div></div><div class="decision"><div class="d-side before"><label>Before</label><h5>Decorative severity pills</h5><p>Managers had to manually hunt for relevant people.</p></div><div class="d-side after-teal"><label>After</label><h5>Severity pills as interactive filters</h5><p>One click instantly filters the tree to overloaded members across all sub-teams.</p></div></div></section>
+  <section class="section"><div class="cs-section-label">05 — Outcomes</div><h2 class="section-title">Measured against pain points</h2><div class="four-col"><div class="outcome-card teal-top"><span class="outcome-num teal">4×</span><div class="outcome-label">Faster request assessment</div><div class="outcome-sub">From 3 meetings to seconds</div></div><div class="outcome-card teal-top"><span class="outcome-num teal">1</span><div class="outcome-label">Single source of truth</div><div class="outcome-sub">Replacing spreadsheets &amp; email chains</div></div><div class="outcome-card teal-top"><span class="outcome-num teal">100%</span><div class="outcome-label">Task completion rate</div><div class="outcome-sub">All 5 participants, unaided</div></div><div class="outcome-card teal-top"><span class="outcome-num teal">2Q</span><div class="outcome-label">Earlier hiring decisions</div><div class="outcome-sub">Forecast chart, 2 quarters ahead</div></div></div></section>
+  <section class="section alt"><div class="cs-section-label">06 — Learnings</div><h2 class="section-title">What this taught me</h2><div class="learning"><div class="l-num teal">01</div><div class="l-body"><h5>Data-dense ≠ overwhelming — context is everything</h5><p>The challenge wasn't simplification. It was giving every number its organizational and project context so it was immediately actionable.</p></div></div><div class="learning"><div class="l-num teal">02</div><div class="l-body"><h5>Time is a first-class design dimension</h5><p>Designing navigable period hierarchies fundamentally changed how managers could plan ahead.</p></div></div><div class="learning"><div class="l-num teal">03</div><div class="l-body"><h5>Merge pages when the decision is the same</h5><p>Merging Team and Capacity removed a mental model split that served the tool, not the user.</p></div></div></section>
+  <footer class="cs-footer"><h3>Sarah Abouzainah</h3><p>Chief UX/UI Designer · Valeo Egypt · 16+ years in enterprise product design</p><div class="footer-links"><a class="footer-link" href="https://www.behance.net/SarahAbouzainah">Full Portfolio</a><a class="footer-link" href="http://linkedin.com/in/sarah-abouzainah/">LinkedIn</a><a class="footer-link" href="mailto:sarah.abouzaina@gmail.com">Get in touch</a></div><div class="footer-credit">© 2026 · Workforce Manager · UX/UI Case Study</div></footer>
+</div>
 
 </div><!-- /cs -->
 
+<!-- CURSOR — last in body for correct z-index stacking -->
+<div class="cursor-dot" id="dot" style="position:fixed;width:8px;height:8px;background:var(--accent-bright);border-radius:50%;pointer-events:none;z-index:999999;transform:translate(-50%,-50%);transition:width 0.15s,height 0.15s;top:0;left:0"></div>
+<div class="cursor-ring" id="ring" style="position:fixed;width:36px;height:36px;border:1px solid var(--fg-muted);border-radius:50%;pointer-events:none;z-index:999998;transform:translate(-50%,-50%);transition:all 0.1s ease;top:0;left:0"></div>
+
 <script>
+/* ── CURSOR ── */
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  document.getElementById('dot').style.left=mx+'px';
+  document.getElementById('dot').style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+  document.getElementById('ring').style.left=Math.round(rx)+'px';
+  document.getElementById('ring').style.top=Math.round(ry)+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button,[role=button],.project-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    document.getElementById('dot').style.width='4px';
+    document.getElementById('dot').style.height='4px';
+    document.getElementById('ring').style.width='52px';
+    document.getElementById('ring').style.height='52px';
+    document.getElementById('ring').style.borderColor='var(--accent-bright)';
+  });
+  el.addEventListener('mouseleave',()=>{
+    document.getElementById('dot').style.width='8px';
+    document.getElementById('dot').style.height='8px';
+    document.getElementById('ring').style.width='36px';
+    document.getElementById('ring').style.height='36px';
+    document.getElementById('ring').style.borderColor='var(--fg-muted)';
+  });
+});
+
+/* ── THEME TOGGLE ── */
+const html=document.documentElement;
+const toggle=document.getElementById('themeToggle');
+let dark=true;
+toggle.addEventListener('click',()=>{
+  dark=!dark;
+  html.setAttribute('data-theme', dark?'dark':'light');
+  toggle.textContent=dark?'☀️':'🌙';
+  toggle.title=dark?'Switch to light mode':'Switch to dark mode';
+});
+
+/* ── PHOTO LOADING ── */
+async function loadPhoto(){
+  const names=['image1.jpg','image1.jpeg','Image1.jpg','photo.jpg','Image 1.jpg','portrait.jpg','sarah.jpg','IMG_1.jpg'];
+  for(const n of names){
+    try{
+      const data=await window.fs.readFile(n);
+      const blob=new Blob([data],{type:'image/jpeg'});
+      const url=URL.createObjectURL(blob);
+      const img=document.getElementById('portrait-img');
+      img.src=url;
+      img.style.display='block';
+      document.getElementById('portrait-placeholder').style.display='none';
+      break;
+    }catch(e){}
+  }
+}
+loadPhoto();
+
+/* ── NAVIGATION ── */
 function showCaseStudy(id){
   document.getElementById('main-page').style.display='none';
   document.getElementById('cs').style.display='block';
   document.getElementById('cs-subnav').style.display='flex';
   document.getElementById('main-nav-links').style.display='none';
-  var btn=document.querySelector('#cs-subnav .cs-tab[data-page="'+id+'"]');
-  switchPage(id,btn);
+  switchPage(id,document.querySelector('#cs-subnav .cs-tab[data-page="'+id+'"]'));
   window.scrollTo(0,0);
 }
 function showMainPage(){
@@ -948,13 +1023,29 @@ function showMainPage(){
   window.scrollTo(0,0);
 }
 function switchPage(id,btn){
-  document.querySelectorAll('#cs .page').forEach(function(p){p.classList.remove('active');});
-  document.querySelectorAll('#cs-subnav .cs-tab').forEach(function(b){b.classList.remove('active');});
-  var pg=document.getElementById('page-'+id);
+  document.querySelectorAll('#cs .page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#cs-subnav .cs-tab').forEach(b=>b.classList.remove('active'));
+  const pg=document.getElementById('page-'+id);
   if(pg)pg.classList.add('active');
   if(btn)btn.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+/* ── SCROLL FADE-IN ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:0.08});
+document.querySelectorAll('.exp-item,.stat-box,.nda-card,.project-item,.ux-step').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(18px)';
+  el.style.transition='opacity 0.55s ease, transform 0.55s ease';
+  obs.observe(el);
+});
 </script>
 </body>
 </html>

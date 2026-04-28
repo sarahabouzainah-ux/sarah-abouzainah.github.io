@@ -71,7 +71,8 @@ nav ul a:hover{color:var(--cr)}
 .bs-l{font-size:.68rem;font-weight:700;color:var(--kl);letter-spacing:.1em;text-transform:uppercase;margin-top:.5rem;line-height:1.6}
 
 /* COMPANIES */
-#companies{background:var(--wh);padding:5rem 4rem;border-bottom:1px solid rgba(200,146,10,.1)}
+#companies{background:var(--wh);padding:5rem 4rem 4rem;border-bottom:1px solid rgba(200,146,10,.1)}
+#stats{background:var(--wh);padding:0 4rem 4rem}
 .sec-label{display:flex;align-items:center;gap:8px;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cs);margin-bottom:2.5rem}
 .sec-label::before{content:'';width:22px;height:2px;background:var(--cs)}
 .cg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,146,10,.1);border:1px solid rgba(200,146,10,.1)}
@@ -83,9 +84,9 @@ nav ul a:hover{color:var(--cr)}
 .cg-period{font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cg)}
 
 /* STATS */
-#stats{background:var(--wh);padding:0 4rem}
-.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(200,146,10,.1);border:2px solid rgba(200,146,10,.1)}
-.sc{background:var(--wh);padding:2.5rem 2rem;text-align:center;transition:background .3s;position:relative;overflow:hidden}
+#stats{background:var(--wh);padding:0 4rem 4rem}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(200,146,10,.1)}
+.sc{background:var(--wh);padding:2.5rem 2rem;text-align:center;transition:background .3s;position:relative;overflow:hidden;border:1px solid rgba(200,146,10,.14)}
 .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--cg);transform:scaleX(0);transition:transform .3s}
 .sc:hover{background:var(--bg2)}.sc:hover::before{transform:scaleX(1)}
 .sn{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:900;line-height:1;margin-bottom:.4rem;display:block}
@@ -95,7 +96,9 @@ nav ul a:hover{color:var(--cr)}
 .ind-tag{font-size:.56rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.16rem .52rem;border-radius:100px;background:rgba(61,90,65,.08);color:var(--cs);border:1px solid rgba(61,90,65,.18)}
 
 /* ABOUT */
-#about{background:var(--bg);padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;position:relative;overflow:hidden}
+#about{background:var(--bg);padding:6rem 4rem 3rem;position:relative;overflow:hidden}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem}
+.about-process{margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(200,146,10,.12)}
 .ah{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.4vw,3.4rem);font-weight:700;line-height:1.15;color:var(--ck);margin-bottom:2rem}
 .ah em{font-style:italic;color:var(--cr)}
 .ap{font-size:.9rem;color:var(--km);line-height:1.9;margin-bottom:1.25rem;font-weight:300}
@@ -165,6 +168,7 @@ nav ul a:hover{color:var(--cr)}
 .ec{background:var(--wh);padding:1.75rem 2rem;border-radius:14px;border:1px solid rgba(61,90,65,.16);transition:all .3s;position:relative;overflow:hidden}
 .ec::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--cs)}
 .ec:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(61,90,65,.09)}
+.ec-logo{height:36px;max-width:120px;object-fit:contain;display:block;margin-bottom:.9rem}
 .ey{font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cg);margin-bottom:.5rem}
 .etitle{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--ck);margin-bottom:.3rem;line-height:1.35}
 .einst{font-size:.75rem;color:var(--kl);font-weight:500}
@@ -273,7 +277,8 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
 @media(max-width:1060px){
   #hero{grid-template-columns:1fr;min-height:auto}.hr{min-height:420px}
   .sg{grid-template-columns:1fr 1fr}
-  #about{grid-template-columns:1fr;gap:2.5rem}
+  #about{padding:4rem 2rem 2.5rem}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
   .wg{grid-template-columns:1fr 1fr}
   .ng,.cg-grid,.eg{grid-template-columns:1fr}
   #companies,#stats,#about,#work,#nda,#exp,#edu,#contact{padding:4rem 2rem}
@@ -405,39 +410,30 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
     </div>
     <div class="sc rv rv3"><span class="sn r" data-n="10">0</span><span style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--cr);font-weight:900;display:block;margin-top:-.35rem;margin-bottom:.55rem">+</span><div class="sl">Designers mentored &amp; led</div></div>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(200,146,10,.08);border:2px solid rgba(200,146,10,.08);border-top:none">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(200,146,10,.08);border-top:none">
     <div class="sc" style="padding:1.4rem 2rem"><span style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--cg);line-height:1;display:block;margin-bottom:.3rem">50%</span><div class="sl" style="font-size:.68rem">Design &amp; dev effort reduction — GISACC Design System</div></div>
     <div class="sc" style="padding:1.4rem 2rem"><span style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--cs);line-height:1;display:block;margin-bottom:.3rem">4K+</span><div class="sl" style="font-size:.68rem">Users served — Academic Ecosystem at Zewail City</div></div>
     <div class="sc" style="padding:1.4rem 2rem"><span style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--cr);line-height:1;display:block;margin-bottom:.3rem">25%</span><div class="sl" style="font-size:.68rem">User retention uplift — Issues &amp; Risks Monitoring Platform</div></div>
   </div>
 </div>
 
-<!-- ABOUT -->
 <section id="about">
-  <div class="rv">
-    <div class="sec-label">About me</div>
-    <h2 class="ah">I lead design teams.<br><em>I still craft</em><br>hands-on, every day.</h2>
-    <p class="ap">With <strong>16+ years spanning B2B SaaS, Automotive, and Telecom</strong>, I sit at the intersection of design strategy and hands-on craft. I build design chapters, establish DesignOps processes, and set the technical direction for how a design team works — not just what they produce.</p>
-    <p class="ap">I pioneer <strong>AI across the full design workflow</strong> — from component generation and research synthesis to interactive stakeholder demos — driving organisation-wide adoption and compressing delivery cycles noticeably.</p>
-    <p class="ap">I operate with a <strong>design-to-cost mindset</strong>: every decision is weighed against engineering reality from day one — how I reduced design and development effort by 50% at Valeo.</p>
-    <div class="process">
-      <div class="ps"><div class="pi" style="background:rgba(196,18,48,.1);border:1.5px solid rgba(196,18,48,.26)">🔍</div><div class="plb">Discover</div></div>
-      <svg style="margin-top:16px" width="20" height="10" viewBox="0 0 20 10"><path d="M0 5 C5 2,15 8,20 5" class="wv"/></svg>
-      <div class="ps"><div class="pi" style="background:rgba(200,146,10,.1);border:1.5px solid rgba(200,146,10,.26)">📐</div><div class="plb">Define</div></div>
-      <svg style="margin-top:16px" width="20" height="10" viewBox="0 0 20 10"><path d="M0 5 C5 8,15 2,20 5" class="wv"/></svg>
-      <div class="ps"><div class="pi" style="background:rgba(212,74,48,.1);border:1.5px solid rgba(212,74,48,.26)">✏️</div><div class="plb">Design</div></div>
-      <svg style="margin-top:16px" width="20" height="10" viewBox="0 0 20 10"><path d="M0 5 C5 2,15 8,20 5" class="wv"/></svg>
-      <div class="ps"><div class="pi" style="background:rgba(61,90,65,.1);border:1.5px solid rgba(61,90,65,.26)">🧪</div><div class="plb">Test</div></div>
-      <svg style="margin-top:16px" width="20" height="10" viewBox="0 0 20 10"><path d="M0 5 C5 8,15 2,20 5" class="wv"/></svg>
-      <div class="ps"><div class="pi" style="background:rgba(196,18,48,.1);border:1.5px solid rgba(196,18,48,.26)">🚀</div><div class="plb">Ship</div></div>
+  <div class="about-grid">
+    <div class="rv">
+      <div class="sec-label">About me</div>
+      <h2 class="ah">I lead design teams.<br><em>I still craft</em><br>hands-on, every day.</h2>
+      <p class="ap">With <strong>16+ years spanning B2B SaaS, Automotive, and Telecom</strong>, I sit at the intersection of design strategy and hands-on craft. I build design chapters, establish DesignOps processes, and set the technical direction for how a design team works — not just what they produce.</p>
+      <p class="ap">I pioneer <strong>AI across the full design workflow</strong> — from component generation and research synthesis to interactive stakeholder demos — driving organisation-wide adoption and compressing delivery cycles noticeably.</p>
+      <p class="ap">I operate with a <strong>design-to-cost mindset</strong>: every decision is weighed against engineering reality from day one.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1.75rem">
+      <div class="rv"><div class="glabel">🤖 AI &amp; Modern Workflow</div><div class="pg"><span class="pill pr">AI-Assisted Design</span><span class="pill pr">Vibe Coding</span><span class="pill pr">AI Research Synthesis</span><span class="pill pg2">AI Component Generation</span><span class="pill pg2">Prompt Engineering</span></div></div>
+      <div class="rv rv1"><div class="glabel">🎨 Design Leadership</div><div class="pg"><span class="pill pk">DesignOps</span><span class="pill pk">Design Systems</span><span class="pill pk">Design Tokens</span><span class="pill pk">Tri-track Agile</span><span class="pill pk">Design-to-Cost</span><span class="pill pk">Stakeholder Mgmt</span><span class="pill pk">Mentorship</span></div></div>
+      <div class="rv rv2"><div class="glabel">🔬 UX Practice</div><div class="pg"><span class="pill pc2">User Research</span><span class="pill pc2">Usability Testing</span><span class="pill pc2">Heuristic Evaluation</span><span class="pill pc2">Info Architecture</span><span class="pill pc2">WCAG Accessibility</span><span class="pill pc2">Prototyping</span></div></div>
+      <div class="rv rv3"><div class="glabel">✏️ Tools</div><div class="pg"><span class="pill psg">Figma</span><span class="pill psg">Miro</span><span class="pill psg">Sketch</span><span class="pill psg">Adobe CC</span><span class="pill psg">HTML / CSS</span><span class="pill psg">Confluence</span><span class="pill psg">JIRA</span></div></div>
     </div>
   </div>
-  <div style="display:flex;flex-direction:column;gap:1.75rem">
-    <div class="rv"><div class="glabel">🤖 AI &amp; Modern Workflow</div><div class="pg"><span class="pill pr">AI-Assisted Design</span><span class="pill pr">Vibe Coding</span><span class="pill pr">AI Research Synthesis</span><span class="pill pg2">AI Component Generation</span><span class="pill pg2">Prompt Engineering</span></div></div>
-    <div class="rv rv1"><div class="glabel">🎨 Design Leadership</div><div class="pg"><span class="pill pk">DesignOps</span><span class="pill pk">Design Systems</span><span class="pill pk">Design Tokens</span><span class="pill pk">Tri-track Agile</span><span class="pill pk">Design-to-Cost</span><span class="pill pk">Stakeholder Mgmt</span><span class="pill pk">Mentorship</span></div></div>
-    <div class="rv rv2"><div class="glabel">🔬 UX Practice</div><div class="pg"><span class="pill pc2">User Research</span><span class="pill pc2">Usability Testing</span><span class="pill pc2">Heuristic Evaluation</span><span class="pill pc2">Info Architecture</span><span class="pill pc2">WCAG Accessibility</span><span class="pill pc2">Prototyping</span></div></div>
-    <div class="rv rv3"><div class="glabel">✏️ Tools</div><div class="pg"><span class="pill psg">Figma</span><span class="pill psg">Miro</span><span class="pill psg">Sketch</span><span class="pill psg">Adobe CC</span><span class="pill psg">HTML / CSS</span><span class="pill psg">Confluence</span><span class="pill psg">JIRA</span></div></div>
-  </div>
+
 </section>
 
 <!-- WORK -->
@@ -446,7 +442,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
   <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,3.2vw,3.2rem);font-weight:700;color:var(--ck)" class="rv">Projects that <em style="color:var(--cg);font-style:italic">moved</em> the needle</h2>
   <div class="wg">
     <div class="wc rv" onclick="openCase('appraisal')" style="cursor:pointer">
-      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/7286ee114938089.6045110c1d991.png" alt="Valeo Appraisal Process"></div>
+      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7286ee114938089.6045110c1d991.png" alt="Valeo Appraisal Process"></div>
       <div class="wb">
         <div class="wcat cr">01 · Case Study</div>
         <div class="wtit">Valeo Appraisal Process</div>
@@ -455,7 +451,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
       </div>
     </div>
     <div class="wc rv rv1" onclick="openCase('elevator')" style="cursor:pointer">
-      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/97389353.jpg" alt="10000-Floor Elevator Research"></div>
+      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9a23e197389353.5ec9d8a18bee5.jpg" alt="10000-Floor Elevator Research"></div>
       <div class="wb">
         <div class="wcat cg">02 · Case Study</div>
         <div class="wtit">10,000-Floor Elevator</div>
@@ -464,7 +460,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
       </div>
     </div>
     <div class="wc rv rv2" onclick="openCase('bustracker')" style="cursor:pointer">
-      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/112026169.jpg" alt="Bus Tracker Mobile App"></div>
+      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8c28f1112026169.600d008db62e0.png" alt="Bus Tracker Mobile App"></div>
       <div class="wb">
         <div class="wcat cg">03 · UX Research</div>
         <div class="wtit">Bus Tracker Mobile App</div>
@@ -473,7 +469,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
       </div>
     </div>
     <a href="https://www.behance.net/gallery/96320335/UX-Design-for-Monitoring-Tool-App" target="_blank" class="wc rv rv3">
-      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/96320335.jpg" alt="Monitoring Tool App"></div>
+      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b7ca3396320335.5eb9218a54100.png" alt="Monitoring Tool App"></div>
       <div class="wb">
         <div class="wcat cr">04 · Enterprise</div>
         <div class="wtit">Monitoring Tool App</div>
@@ -482,7 +478,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
       </div>
     </a>
     <a href="https://www.behance.net/gallery/93151109/UX-Case-Study-for-Expense-Tracker" target="_blank" class="wc rv">
-      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/93151109.jpg" alt="Expense Tracker"></div>
+      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d4ecda93151109.5e60ea671b7be.png" alt="Expense Tracker"></div>
       <div class="wb">
         <div class="wcat cg">05 · FinTech</div>
         <div class="wtit">Expense Tracker</div>
@@ -491,7 +487,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
       </div>
     </a>
     <a href="https://www.behance.net/gallery/53697885/Interface-Design-for-Zewail-City-Website" target="_blank" class="wc rv rv1">
-      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/53697885.jpg" alt="Zewail City Website"></div>
+      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd_webp/13364053697885.593e51722600c.jpg" alt="Zewail City Website"></div>
       <div class="wb">
         <div class="wcat cs">06 · Web Design</div>
         <div class="wtit">Zewail City Website</div>
@@ -500,7 +496,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
       </div>
     </a>
     <a href="https://www.behance.net/gallery/57606125/Classrooms-Wall-Murals" target="_blank" class="wc rv rv2">
-      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/57606125.jpg" alt="Classrooms Wall Murals"></div>
+      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/5edabe57606125.5a32586071e3c.jpg" alt="Classrooms Wall Murals"></div>
       <div class="wb">
         <div class="wcat cs">07 · Environmental</div>
         <div class="wtit">Classrooms Wall Murals</div>
@@ -509,7 +505,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
       </div>
     </a>
     <a href="https://www.behance.net/gallery/93395403/UX-Case-Study-for-Admission-Exam-App" target="_blank" class="wc rv rv3">
-      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/93395403.jpg" alt="Admission Exam App"></div>
+      <div class="wi"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9fb7a393395403.5e63891a29f68.png" alt="Admission Exam App"></div>
       <div class="wb">
         <div class="wcat cg">08 · EdTech</div>
         <div class="wtit">Admission Exam App</div>
@@ -1020,18 +1016,22 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.04em}
 </div><!-- end #cs-bustracker -->
 
 <script>
-// Logo error handler — replace broken images with a clean text fallback
+// Logo error handler — hide broken images gracefully
 document.querySelectorAll('img[data-logo-fallback]').forEach(img => {
-  img.onerror = function() {
-    const fb = this.dataset.logoFallback;
-    const wrap = this.parentNode;
-    const span = document.createElement('span');
-    span.style.cssText = 'font-size:.78rem;font-weight:800;letter-spacing:.06em;color:var(--ck);opacity:.55;display:block;margin-bottom:.75rem;font-family:"Plus Jakarta Sans",sans-serif;text-transform:uppercase';
-    span.textContent = fb;
-    wrap.replaceChild(span, this);
+  const handle = function() {
+    try {
+      const fb = img.dataset.logoFallback;
+      const parent = img.parentNode;
+      if (!parent) { img.style.display = 'none'; return; }
+      const span = document.createElement('span');
+      span.style.cssText = 'font-size:.78rem;font-weight:800;letter-spacing:.06em;color:var(--ck);opacity:.55;display:block;margin-bottom:.75rem;font-family:"Plus Jakarta Sans",sans-serif;text-transform:uppercase';
+      span.textContent = fb;
+      parent.insertBefore(span, img);
+      parent.removeChild(img);
+    } catch(e) { img.style.display = 'none'; }
   };
-  // Trigger check if already errored (cached failure)
-  if (img.complete && img.naturalWidth === 0) img.onerror();
+  img.addEventListener('error', handle);
+  if (img.complete && img.naturalWidth === 0) handle();
 });
 
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:.1});
